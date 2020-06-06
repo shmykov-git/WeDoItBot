@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1145
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoItBot", "WeDoItBot\WeDoItBot.csproj", "{FD012A9F-39E3-425E-8E3F-2DF3127F8313}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C4F0D871-2029-4541-A6E9-852859152D10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FD012A9F-39E3-425E-8E3F-2DF3127F8313}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD012A9F-39E3-425E-8E3F-2DF3127F8313}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD012A9F-39E3-425E-8E3F-2DF3127F8313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F0D871-2029-4541-A6E9-852859152D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F0D871-2029-4541-A6E9-852859152D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F0D871-2029-4541-A6E9-852859152D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F0D871-2029-4541-A6E9-852859152D10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
