@@ -2,6 +2,7 @@
   "Rooms": [
     {
       "Key": "start",
+      "Pic": "qr.png",
       "Message": "Привет! Меня зовут Василий. Я буду твоим координатором на конференции.",
       "Message2": "Позволь мне проверить твой билет, чтобы понять :)",
       "Commands": [
@@ -13,6 +14,11 @@
           "GoYes": "hakaton",
           "NameNo": "no",
           "GoNo": "notiket"
+        },
+        {
+          "Type": "Go",
+          "Name": "happy_end",
+          "Go": "tusa"
         }
       ]
     },
@@ -56,6 +62,24 @@
       ]
     },
     {
+      "key": "goalRoadmap",
+      "Name": "Мы хотим помочь тебе с поставленной целью",
+      "Pic": "roadmap.png",
+      "Description": "Но нас тут попросили сделать все за один день и мы почему-то не успеваем. Будет много таких как ты, вы погуляете по комнатам. Мы узнаем вас получше. Запустим крутой анализатор и выбиралку людей. И предложим Вас дург другу!",
+      "Commands": [
+        {
+          "Type": "Link",
+          "Name": "mySolutionShouldBeHere",
+          "Link": "linkToYourSolution"
+        },
+        {
+          "Type": "Go",
+          "Name": "exit",
+          "go": "hakaton"
+        }
+      ]
+    },
+    {
       "key": "kafe",
       "Name": "Хакатоним 2020",
       "Pic": "Кафе.jpg",
@@ -65,6 +89,44 @@
           "Type": "Link",
           "Name": "openKafeChat",
           "Link": "linkToKafeChat"
+        },
+        {
+          "Type": "Go",
+          "Name": "exit",
+          "go": "hakaton"
+        }
+      ]
+    },
+    {
+      "key": "tusa",
+      "Name": "Хакатоним 2020 (after party)",
+      "Pic": "tusa.png",
+      "Description": "Наконец-то... наконецто начинается самое главное. Деньги на конференцию потратили, а ни с кем не познакомились... Как раз тут такие же отчаянные ребята как ты и у них много планов. Но, погоди. Хотя погоди, ты пьешь пиво?..",
+      "Commands": [
+        {
+          "Type": "Link",
+          "Name": "showMeTheKeyFromMoneyRoom",
+          "Link": "showMeTheKeyFromMoneyRoom"
+        },
+        {
+          "Type": "Link",
+          "Name": "showMePMs",
+          "Link": "showMePMs"
+        },
+        {
+          "Type": "Link",
+          "Name": "showMeDesigners",
+          "Link": "showMeDesigners"
+        },
+        {
+          "Type": "Link",
+          "Name": "showMeProgramers",
+          "Link": "showMeProgramers"
+        },
+        {
+          "Type": "Link",
+          "Name": "showMeAnyBodyByRandom",
+          "Link": "showMeAnyBodyByRandom"
         },
         {
           "Type": "Go",
