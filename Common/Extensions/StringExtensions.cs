@@ -21,27 +21,6 @@ namespace Common.Extensions
 	        return strList.SJoin(" ");
         }
 
-		public static string InsertNames<T>(this string pattern, T source)
-        {
-	        var value = pattern;
-	        var getters = source.PropertiesGetters();
-			getters.ForEach(g=>
-			{
-				var repStr = $"{{{g.Key.Split('.').Last()}}}";
-				if (value.Contains(repStr))
-					value = value.Replace(repStr, g.Value().ToString());
-			});
-
-			return value;
-        }
-
-        public static string InsertNames(this string pattern, params string[] args)
-        {
-	        var result = pattern;
-			args.ForEachPair((key, value)=>result = result.Replace($"{{{key}}}", value));
-			return result;
-        }
-
         public static string ToLowerCamelCase(this string str)
         {
 	        return string.IsNullOrEmpty(str) ? str : $"{str.Substring(0, 1).ToLower()}{str.Substring(1)}";

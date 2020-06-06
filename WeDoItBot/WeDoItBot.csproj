@@ -113,7 +113,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\BotMap.cs" />
+    <Compile Include="DataModel\Command.cs" />
+    <Compile Include="DataModel\CommandType.cs" />
     <Compile Include="DataModel\Room.cs" />
+    <Compile Include="DataModel\State.cs" />
+    <Compile Include="DataModel\StateType.cs" />
     <Compile Include="IoCWeDoIt.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

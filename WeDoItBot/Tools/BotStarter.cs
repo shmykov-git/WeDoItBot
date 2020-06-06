@@ -3,18 +3,15 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Common.Aspects;
 using Common.Extensions;
 using Common.Logs;
-using Common.Tools;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
-using Telegram.Bot.Types.ReplyMarkups;
 using WeDoItBot.DataModel;
 using File = System.IO.File;
 
@@ -33,13 +30,11 @@ namespace WeDoItBot.Tools
         private State GetState(string key) => states.GetOrAdd(key, k => defaultStateFn());
         private State GetState(Message message) => GetState(message.Chat.Username ?? message.Chat.Title);
 
-        private int[] chats = {Chats.BotChat, Chats.BotTestChat};
-
         public BotStarter(ILog log, IBotStarterSettings settings)
         {
             this.log = log;
             this.settings = settings;
-            map = System.IO.File.ReadAllText(settings.BotFile).FromJson<BotMap>();
+            map = File.ReadAllText(settings.BotFile).FromJson<BotMap>();
             defaultStateFn = ()=>new State()
             {
                 CurrentRoom = map.Rooms.First()
@@ -52,8 +47,6 @@ namespace WeDoItBot.Tools
             var proxy = new WebProxy(settings.ProxyHost);
             bot = new TelegramBotClient(settings.BotToken, proxy);
 
-            //var me = await bot.GetMeAsync();
-            //Console.Title = me.Username;
 
             bot.OnMessage += BotOnMessageReceived;
             bot.OnReceiveGeneralError += (o, a) => Console.WriteLine($"GError:{a.Exception.Message}");
@@ -61,19 +54,6 @@ namespace WeDoItBot.Tools
 
             bot.StartReceiving();
             log.Info($"Start listening");
-
-            //bot.GetMeAsync().ContinueWith(me=>{});
-
-            //var image1 = File.Open(@"Content\bot.png", FileMode.Open);
-            //bot.SendPhotoAsync(new ChatId(groupdChat), new InputOnlineFile(image1));
-            //bot.SendTextMessageAsync(new ChatId(groupdChat), "Я опять включился, привет!");
-
-            //bot.SendTextMessageAsync(new ChatId(400819276), "Подключился!");
-            //var image2 = File.Open(@"Content\bot.png", FileMode.Open);
-            //bot.SendPhotoAsync(new ChatId(400819276), new InputOnlineFile(image2));
-
-            ShowRoom(Chats.BotChat, map.Rooms.First());
-            //ShowRoom(Chats.BotTestChat, map.Rooms.First());
 
             Console.ReadLine();
             bot.StopReceiving();
@@ -101,31 +81,6 @@ namespace WeDoItBot.Tools
 
                     return;
                 }
-
-                //await bot.SendChatActionAsync(e.Message.Chat.Id, ChatAction.Typing);
-
-                //await Task.Delay(500);
-
-                //if (e.Message.Text == "Test")
-                //{
-                //    await bot.SendTextMessageAsync(
-                //        chatId: e.Message.Chat.Id,
-                //        text: "Ищу нормальный прокси...",
-                //        replyMarkup: InlineKeyboardMarkup.Empty()
-                //    );
-                //}
-
-                //if (e.Message.Text.StartsWith("Вася пока"))
-                //{
-                //    await bot.SendTextMessageAsync(e.Message.Chat.Id, "Пока, остальное потом. И с прокси у меня беда, не очень стабилен");
-                //    return;
-                //}
-
-                //if (e.Message.Text.StartsWith("Вася"))
-                //{
-                //    await bot.SendTextMessageAsync(e.Message.Chat.Id, "Я пока ничего не умею");
-                //}
-
             }
         }
 
@@ -166,8 +121,8 @@ namespace WeDoItBot.Tools
 
         private async Task ShowCmd(Message message, Command commnad)
         {
-            var chatId = message?.Chat?.Id??Chats.BotChat;
-            State state = message == null ? null : GetState(message);
+            var chatId = message.Chat.Id;
+            var state = GetState(message);
 
             switch (commnad.Type)
             {
@@ -299,12 +254,15 @@ namespace WeDoItBot.Tools
             if (File.Exists(fileName))
             {
                 //await bot.SendTextMessageAsync(chatId, $"+{imageKey}");
-
                 //await bot.SendTextMessageAsync(chatId, $"[show pic {imageKey}]");
 
-                ////todo: free memory
-                var image = File.Open(fileName, FileMode.Open);
-                await bot.SendPhotoAsync(chatId, new InputOnlineFile(image));
+                using (var image = File.Open(fileName, FileMode.Open))
+                {
+                    await bot.SendPhotoAsync(chatId, new InputOnlineFile(image));
+                }
+
+                //var image = File.Open(fileName, FileMode.Open);
+                //await bot.SendPhotoAsync(chatId, new InputOnlineFile(image));
             }
             else
             {

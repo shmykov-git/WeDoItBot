@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Common.Logs;
-using Common.Tools;
 using NLog;
 using Unity;
 using Unity.Resolution;
@@ -23,9 +22,6 @@ namespace Common
 			LogByNLogAndConsole.Configure(Assembly.GetExecutingAssembly());
 			Container.RegisterFactory<Func<string, ILogger>>(c => (Func<string, ILogger>)LogManager.GetLogger);
 			Container.RegisterType<ILog, LogByNLogAndConsole>();
-
-			Container.RegisterSingleton<FileManager>();
-			Container.RegisterSingleton<JMaster>();
 
 			foreach (var confugureAction in confugureActions)
 			{
