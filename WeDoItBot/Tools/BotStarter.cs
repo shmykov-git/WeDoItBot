@@ -253,11 +253,16 @@ namespace WeDoItBot.Tools
                 {
                     await bot.SendTextMessageAsync(message.Chat.Id, $"[Открою чат: {goCommand.Link}]");
                 }
+
+                return;
             }
 
             var yesCommand = room.Commands.FirstOrDefault(c => c.NameYes == cmd);
             if (yesCommand != null)
+            {
                 await GoToRoom(message, yesCommand.GoYes);
+            }
+
 
             var noCommand = room.Commands.FirstOrDefault(c => c.NameNo == cmd);
             if (noCommand != null)

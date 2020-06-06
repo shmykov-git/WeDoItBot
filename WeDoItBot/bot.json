@@ -104,34 +104,34 @@
       "Description": "Наконец-то... наконецто начинается самое главное. Деньги на конференцию потратили, а ни с кем не познакомились... Как раз тут такие же отчаянные ребята как ты и у них много планов. Но, погоди. Хотя погоди, ты пьешь пиво?..",
       "Commands": [
         {
-          "Type": "Link",
+          "Type": "Go",
           "Name": "showMeTheKeyFromMoneyRoom",
-          "Link": "showMeTheKeyFromMoneyRoom"
+          "Go": "underconstruction"
         },
         {
-          "Type": "Link",
+          "Type": "Go",
           "Name": "showMePMs",
-          "Link": "showMePMs"
+          "Go": "underconstruction"
         },
         {
-          "Type": "Link",
+          "Type": "Go",
           "Name": "showMeDesigners",
-          "Link": "showMeDesigners"
+          "Go": "underconstruction"
         },
         {
-          "Type": "Link",
+          "Type": "Go",
           "Name": "showMeProgramers",
-          "Link": "showMeProgramers"
+          "Go": "underconstruction"
         },
         {
-          "Type": "Link",
+          "Type": "Go",
           "Name": "showMeAnyBodyByRandom",
-          "Link": "showMeAnyBodyByRandom"
+          "Go": "underconstruction"
         },
         {
           "Type": "Go",
           "Name": "exit",
-          "go": "hakaton"
+          "Go": "hakaton"
         }
       ]
     },
@@ -156,6 +156,19 @@
           "Type": "Enter",
           "Name": "exit",
           "Go": "hakaton"
+        }
+      ]
+    },
+    {
+      "key": "underconstruction",
+      "Name": "В разработке...",
+      "Pic": "millions.png",
+      "Description": "Нам нужно еще миллион долларов и 2 дня! :)",
+      "Commands": [
+        {
+          "Type": "Go",
+          "Name": "exit",
+          "go": "hakaton"
         }
       ]
     }
