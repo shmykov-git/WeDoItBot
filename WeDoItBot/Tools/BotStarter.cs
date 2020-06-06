@@ -12,6 +12,7 @@ using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
+using Telegram.Bot.Types.ReplyMarkups;
 using WeDoItBot.DataModel;
 using File = System.IO.File;
 
@@ -51,6 +52,7 @@ namespace WeDoItBot.Tools
             bot.OnMessage += BotOnMessageReceived;
             bot.OnReceiveGeneralError += (o, a) => Console.WriteLine($"GError:{a.Exception.Message}");
             bot.OnReceiveError += (o, a) => Console.WriteLine($"Error:{a.ApiRequestException.Message}");
+            bot.OnCallbackQuery += async (o, a) => await DoCmd(a.CallbackQuery.Message);
 
             bot.StartReceiving();
             log.Info($"Start listening");
@@ -128,7 +130,16 @@ namespace WeDoItBot.Tools
             {
                 case CommandType.Link:
                 case CommandType.Go:
-                    await Say(chatId, $"/{commnad.Name}");
+                    var keyboard = new InlineKeyboardMarkup(new[]
+                    {
+                        new [] 
+                        {
+                            InlineKeyboardButton.WithCallbackData(commnad.Name, $"/{commnad.Name}"),
+                        }
+                    });
+                   
+                    await bot.SendTextMessageAsync(chatId, $"/{commnad.Name}", replyMarkup: keyboard);
+                    //await Say(chatId, $"/{commnad.Name}");
                     break;
                 case CommandType.Ask:
                     await Say(chatId, commnad.Question);
