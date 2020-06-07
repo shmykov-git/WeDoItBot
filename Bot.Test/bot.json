@@ -1,0 +1,12 @@
+﻿{
+
+  "Rooms": [
+    {
+      "$type": "Bot.Model.Rooms.PicRoom, Bot",
+      "Key": "start",
+      "Name": "Шаблон комнаты с картинкой",
+      "Pic": "room.png",
+      "Description": "Эта комната для чего-то создана и тут что-то можно делать"
+    }
+  ]
+}

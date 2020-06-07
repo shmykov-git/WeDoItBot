@@ -133,6 +133,7 @@
     <Compile Include="Tools\IBotStarterSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\room.png" />
     <None Include="App.config" />
     <None Include="NLog.config" />
     <None Include="packages.config">
@@ -142,6 +143,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="bot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -150,7 +154,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bot.json">
+    <Content Include="wedoitbot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\emebot.jpg">

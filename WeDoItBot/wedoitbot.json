@@ -1,0 +1,176 @@
+﻿{
+  "Rooms": [
+    {
+      "Key": "start",
+      "Pic": "qr.png",
+      "Message": "Привет! Меня зовут Василий. Я буду твоим координатором на конференции.",
+      "Message2": "Позволь мне проверить твой билет, чтобы понять :)",
+      "Commands": [
+        {
+          "Type": "Ask",
+          "Question": "Введите номер своего билета или отсканируйте QR-код.",
+          "NotImplMsg": "ПРОВЕРКА QR КОДА",
+          "NameYes": "yes",
+          "GoYes": "hakaton",
+          "NameNo": "no",
+          "GoNo": "notiket"
+        },
+        {
+          "Type": "Go",
+          "Name": "happy_end",
+          "Go": "tusa"
+        }
+      ]
+    },
+    {
+      "key": "notiket",
+      "Pic": "notiket.jpg",
+      "Name": "Нет билета на Хакатон 2020",
+      "Description": "Ой, кажется, где-то закралась ошибка. Попробуйте ввести номер снова.",
+      "Commands": [
+        {
+          "Type": "Go",
+          "Name": "start",
+          "Go": "start"
+        }
+      ]
+    },
+    {
+      "key": "hakaton",
+      "Pic": "emebot.jpg",
+      "Name": "Хакатон 2020",
+      "Description": "Отлично! Теперь позволь мне узнать тебя получше. Так я смогу стать для тебя более полезным.",
+      "Commands": [
+        {
+          "Type": "Enter",
+          "Question": "Как вас зовут? (и тут можно еще много вопросов)",
+          "ValueKey": "Name"
+        },
+        {
+          "Type": "Ask",
+          "Question": "Хотите попробовать найти решение по нашим подсказкам?",
+          "NameYes": "yes",
+          "GoYes": "goalRoadmap",
+          "NameNo": "no",
+          "GoNo": "kafe"
+        },
+        {
+          "Type": "Go",
+          "Name": "start",
+          "Go": "start"
+        }
+      ]
+    },
+    {
+      "key": "goalRoadmap",
+      "Name": "Мы хотим помочь тебе с поставленной целью",
+      "Pic": "roadmap.png",
+      "Description": "Но нас тут попросили сделать все за один день и мы почему-то не успеваем. Будет много таких как ты, вы погуляете по комнатам. Мы узнаем вас получше. Запустим крутой анализатор и выбиралку людей. И предложим Вас дург другу!",
+      "Commands": [
+        {
+          "Type": "Link",
+          "Name": "mySolutionShouldBeHere",
+          "Link": "linkToYourSolution"
+        },
+        {
+          "Type": "Go",
+          "Name": "exit",
+          "go": "hakaton"
+        }
+      ]
+    },
+    {
+      "key": "kafe",
+      "Name": "Хакатоним 2020",
+      "Pic": "Кафе.jpg",
+      "Description": "Тут можно обсудить проведение хакатона в неформальной обстановке. Как тебе вообще вся эта организация? Какой кофе ты любишь? Чтобы пообщаться, переходи по ссылке ниже наш чатик!",
+      "Commands": [
+        {
+          "Type": "Link",
+          "Name": "openKafeChat",
+          "Link": "linkToKafeChat"
+        },
+        {
+          "Type": "Go",
+          "Name": "exit",
+          "go": "hakaton"
+        }
+      ]
+    },
+    {
+      "key": "tusa",
+      "Name": "Хакатоним 2020 (after party)",
+      "Pic": "tusa.png",
+      "Description": "Наконец-то... наконецто начинается самое главное. Деньги на конференцию потратили, а ни с кем не познакомились... Как раз тут такие же отчаянные ребята как ты и у них много планов. Но, погоди. Хотя погоди, ты пьешь пиво?..",
+      "Commands": [
+        {
+          "Type": "Go",
+          "Name": "showMeTheKeyFromMoneyRoom",
+          "Go": "underconstruction"
+        },
+        {
+          "Type": "Go",
+          "Name": "showMePMs",
+          "Go": "underconstruction"
+        },
+        {
+          "Type": "Go",
+          "Name": "showMeDesigners",
+          "Go": "underconstruction"
+        },
+        {
+          "Type": "Go",
+          "Name": "showMeProgramers",
+          "Go": "underconstruction"
+        },
+        {
+          "Type": "Go",
+          "Name": "showMeAnyBodyByRandom",
+          "Go": "underconstruction"
+        },
+        {
+          "Type": "Go",
+          "Name": "exit",
+          "Go": "hakaton"
+        }
+      ]
+    },
+    {
+      "key": "profile",
+      "Name": "Профиль",
+      "Pic": "profile.jpg",
+      "Commands": [
+        {
+          "Type": "Enter",
+          "Name": "enterName"
+        },
+        {
+          "Type": "Enter",
+          "Name": "addPic"
+        },
+        {
+          "Type": "Enter",
+          "Name": "enterGoal"
+        },
+        {
+          "Type": "Enter",
+          "Name": "exit",
+          "Go": "hakaton"
+        }
+      ]
+    },
+    {
+      "key": "underconstruction",
+      "Name": "В разработке...",
+      "Pic": "millions.png",
+      "Description": "Нам нужно еще миллион долларов и 2 дня! :)",
+      "Commands": [
+        {
+          "Type": "Go",
+          "Name": "exit",
+          "go": "hakaton"
+        }
+      ]
+    }
+  ]
+}
