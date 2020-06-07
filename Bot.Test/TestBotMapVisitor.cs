@@ -15,30 +15,38 @@ namespace Bot.Test
             this.log = log;
         }
 
-        private void GoToRoom(string key)
+        public void VisitActionRoom(ActionRoom actionRoom)
         {
-            log.Debug($"=> {key}");
+            log.Debug($"");
+            log.Debug($"{actionRoom.ActionName}(\"{actionRoom.ActionArgument}\");");
         }
 
-        public void DoAction(ActionRoom actionRoom)
+        public void VisitRoom(Room room)
         {
-            log.Debug($"{actionRoom.ActionName}({actionRoom.ActionArgument});");
-            GoToRoom(actionRoom.Go);
+            if (room.AutoGo.IsNotNullOrEmpty())
+                log.Debug($"=> {room.AutoGo}");
         }
 
-        public void ShowButton(Button button)
+        public void VisitActionRoomPlace(ActionRoomPlace actionRoomPlace)
+        {
+            log.Debug($"{actionRoomPlace.ActionName}(\"{actionRoomPlace.ActionArgument}\");");
+        }
+
+        public void VisitButton(Button button)
         {
             log.Debug($"<Button key={button.Key}>{button.Name}</Button>");
         }
 
-        public void ShowButtonDialog(ButtonDialog buttonDialog)
+        public void VisitButtonDialog(ButtonDialog buttonDialog)
         {
             log.Debug($"???{buttonDialog.Question}");
-            buttonDialog.Buttons.ForEach(ShowButton);
+            buttonDialog.Buttons.ForEach(VisitButton);
         }
 
-        public void ShowPicRoom(PicRoom picRoom)
+        public void VisitPicRoom(PicRoom picRoom)
         {
+            log.Debug("");
+            log.Debug($"({picRoom.Key})");
             log.Debug(picRoom.Name);
             log.Debug($"^^{picRoom.Pic}^^");
             log.Debug(picRoom.Description);

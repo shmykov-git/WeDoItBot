@@ -8,7 +8,7 @@
 
         public override void Visit(IBotMapVisitor visitor)
         {
-            visitor.ShowPicRoom(this);
+            visitor.VisitPicRoom(this);
 
             base.Visit(visitor);
         }

@@ -4,6 +4,11 @@
     {
         public string Key { get; set; }
 
-        public virtual void Visit(IBotMapVisitor visitor) { }
+        public string AutoGo { get; set; }
+
+        public virtual void Visit(IBotMapVisitor visitor)
+        {
+            visitor.VisitRoom(this);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Bot.Model.RoomPlaces
 
         public override void Visit(IBotMapVisitor visitor)
         {
-            visitor.ShowButtonDialog(this);
+            visitor.VisitButtonDialog(this);
 
             base.Visit(visitor);
         }

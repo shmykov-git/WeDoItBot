@@ -4,11 +4,10 @@
     {
         public string ActionName { get; set; }
         public string ActionArgument { get; set; }
-        public string Go { get; set; }
 
         public override void Visit(IBotMapVisitor visitor)
         {
-            visitor.DoAction(this);
+            visitor.VisitActionRoom(this);
 
             base.Visit(visitor);
         }

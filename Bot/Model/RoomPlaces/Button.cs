@@ -7,7 +7,7 @@
 
         public override void Visit(IBotMapVisitor visitor)
         {
-            visitor.ShowButton(this);
+            visitor.VisitButton(this);
 
             base.Visit(visitor);
         }

@@ -2,11 +2,24 @@
 
   "Rooms": [
     {
-      "$type": "Bot.Model.Rooms.PicRoom, Bot",
+      "$type": "Bot.Model.Rooms.ActionRoom, Bot",
       "Key": "start",
+      "ActionName": "StartNewSession",
+      "AutoGo": "firstRoom"
+    },
+    {
+      "$type": "Bot.Model.Rooms.PicRoom, Bot",
+      "Key": "firstRoom",
       "Name": "Шаблон комнаты с картинкой",
       "Pic": "room.png",
-      "Description": "Эта комната для чего-то создана и тут что-то можно делать"
+      "Description": "Эта комната для чего-то создана и тут что-то можно делать",
+      "Places": [
+        {
+          "$type": "Bot.Model.RoomPlaces.ActionRoomPlace, Bot",
+          "ActionName": "RoomVisited",
+          "ActionArgument": "firstRoom"
+        }
+      ]
     }
   ]
 }
