@@ -50,6 +50,7 @@ namespace TelegramBot.Tools
                     newContext.UserKey = userKey;
                     newContext.Message = message;
                     newContext.Map = botMap;
+                    newContext.Contexts = contexts;
                     newContext.State = new State();
 
                     return newContext;

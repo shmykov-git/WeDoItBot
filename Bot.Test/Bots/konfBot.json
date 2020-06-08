@@ -11,7 +11,7 @@
       "$type": "Bot.Model.Rooms.PicRoom, Bot",
       "Key": "hiRoom",
       "Name": "Кто я - бот",
-      "Pic": "mebot.png",
+      "Pic": "mebot.jpg",
       "Description": "Привет, я бот - твой помошник для конференции Цифровой прорыв",
       "Places": [
         {

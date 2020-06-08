@@ -5,13 +5,13 @@ using Bot.Model.Rooms;
 using Suit.Extensions;
 using Suit.Logs;
 
-namespace Bot.Tools
+namespace Bot.Test
 {
-    public class BotMapLogger: IBotMapVisitor
+    public class TestBotMapVisitor: IBotMapVisitor
     {
         private readonly ILog log;
 
-        public BotMapLogger(ILog log)
+        public TestBotMapVisitor(ILog log)
         {
             this.log = log;
         }

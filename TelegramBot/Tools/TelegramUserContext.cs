@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Bot.Model;
 using Suit.Logs;
 using Telegram.Bot;
@@ -17,6 +18,7 @@ namespace TelegramBot.Tools
         public BotMap Map { get; set; }
         public Message Message { get; set; }
         public CallbackQuery CallbackQuery { get; set; }
+        public ConcurrentDictionary<string, TelegramUserContext> Contexts { get; set; }
         public State State { get; set; }
 
         public TelegramUserContext(ILog log)
