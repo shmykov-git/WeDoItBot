@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Bot.Model.Artifacts;
 
 namespace Bot.Model.RoomPlaces
@@ -10,11 +11,10 @@ namespace Bot.Model.RoomPlaces
 
         public override Artifact[] Artifacts => Buttons.Select(b => new Artifact() { Go = b.Key }).ToArray();
 
-        public override void Visit(IBotMapVisitor visitor)
+        public override async Task Visit(IBotMapVisitor visitor)
         {
-            visitor.VisitButtonDialog(this);
-
-            base.Visit(visitor);
+            await visitor.VisitButtonDialog(this);
+            await base.Visit(visitor);
         }
     }
 }

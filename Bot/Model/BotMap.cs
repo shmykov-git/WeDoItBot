@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Bot.Model.Rooms;
 using Suit.Extensions;
 
@@ -8,9 +9,9 @@ namespace Bot.Model
     {
         public Room[] Rooms { get; set; }
 
-        public virtual void Visit(IBotMapVisitor visitor)
+        public virtual async Task Visit(IBotMapVisitor visitor)
         {
-            Rooms?.ForEach(r=>r.Visit(visitor));
+            Rooms?.ForEach(async r=> await r.Visit(visitor));
         }
     }
 }

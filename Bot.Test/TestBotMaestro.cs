@@ -35,10 +35,7 @@ namespace Bot.Test
                     var roomKey = action.Substring(1);
                     log.Debug($"click>{roomKey}");
 
-                    if (!State.CanGo(roomKey))
-                        throw new ApplicationException($"No artifact {roomKey}");
-
-                    GoToRoom(roomKey);
+                    Command(roomKey);
                 }
                 else
                 {
@@ -47,18 +44,21 @@ namespace Bot.Test
             }
         }
 
-        public void GoToRoom(string roomKey)
+        public void Command(string command)
         {
-            log.Debug($"=> {roomKey}");
+            log.Debug($"=> {command}");
 
-            var room = Map.FindRoom(roomKey);
+            if (!State.CanGo(command))
+                throw new ApplicationException($"No artifact {command}");
+
+            var room = Map.FindRoom(command);
 
             State.CurrentRoom = room;
 
             room.Visit(visitor);
 
             if (room.AutoGo.IsNotNullOrEmpty())
-                GoToRoom(room.AutoGo);
+                Command(room.AutoGo);
         }
 
         public void Type(string message)

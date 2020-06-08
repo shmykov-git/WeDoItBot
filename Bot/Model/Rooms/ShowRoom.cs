@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Bot.Model.Artifacts;
 using Bot.Model.RoomPlaces;
 using Suit.Extensions;
@@ -11,11 +12,11 @@ namespace Bot.Model.Rooms
 
         public override Artifact[] Artifacts => Places.SelectMany(p => p.Artifacts).ToArray();
 
-        public override void Visit(IBotMapVisitor visitor)
+        public override async Task Visit(IBotMapVisitor visitor)
         {
-            Places?.ForEach(p => p.Visit(visitor));
+            Places?.ForEach(async p => await p.Visit(visitor));
 
-            base.Visit(visitor);
+            await base.Visit(visitor);
         }
     }
 }

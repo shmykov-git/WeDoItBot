@@ -1,4 +1,6 @@
-﻿namespace Bot.Model.Rooms
+﻿using System.Threading.Tasks;
+
+namespace Bot.Model.Rooms
 {
     public class PicRoom : ShowRoom
     {
@@ -6,11 +8,11 @@
         public string Pic { get; set; }
         public string Description { get; set; }
 
-        public override void Visit(IBotMapVisitor visitor)
+        public override async Task Visit(IBotMapVisitor visitor)
         {
-            visitor.VisitPicRoom(this);
+            await visitor.VisitPicRoom(this);
 
-            base.Visit(visitor);
+            await base.Visit(visitor);
         }
     }
 }

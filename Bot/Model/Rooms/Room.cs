@@ -1,4 +1,5 @@
-﻿using Bot.Model.Artifacts;
+﻿using System.Threading.Tasks;
+using Bot.Model.Artifacts;
 
 namespace Bot.Model.Rooms
 {
@@ -8,6 +9,6 @@ namespace Bot.Model.Rooms
         public string AutoGo { get; set; }
 
         public virtual Artifact[] Artifacts => new Artifact[0];
-        public virtual void Visit(IBotMapVisitor visitor) => visitor.VisitRoom(this);
+        public virtual async Task Visit(IBotMapVisitor visitor) => visitor.VisitRoom(this);
     }
 }

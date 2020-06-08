@@ -21,6 +21,7 @@
         },
         {
           "$type": "Bot.Model.RoomPlaces.Button, Bot",
+          "Caption": "Выход", 
           "Key": "secondRoom",
           "Name": "Вторая комната"
         }
@@ -40,6 +41,7 @@
         },
         {
           "$type": "Bot.Model.RoomPlaces.Button, Bot",
+          "Caption": "Выход",
           "Key": "firstRoom",
           "Name": "Первая комната"
         }

@@ -1,19 +1,20 @@
-﻿using Bot.Model.Artifacts;
+﻿using System.Threading.Tasks;
+using Bot.Model.Artifacts;
 
 namespace Bot.Model.RoomPlaces
 {
     public class Button : RoomPlace
     {
+        public string Caption { get; set; }
         public string Key { get; set; }
         public string Name { get; set; }
 
         public override Artifact[] Artifacts => new[] {new Artifact() {Go = Key}};
 
-        public override void Visit(IBotMapVisitor visitor)
+        public override async Task Visit(IBotMapVisitor visitor)
         {
-            visitor.VisitButton(this);
-
-            base.Visit(visitor);
+            await visitor.VisitButton(this);
+            await base.Visit(visitor);
         }
     }
 }

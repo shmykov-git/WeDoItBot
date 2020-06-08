@@ -39,6 +39,7 @@
       "Places": [
         {
           "$type": "Bot.Model.RoomPlaces.Button, Bot",
+          "Caption": "Выход",
           "Key": "hasTicket",
           "Name": "Будем считать, что билет куплен и вы теперь можете посетить конференцию"
         }

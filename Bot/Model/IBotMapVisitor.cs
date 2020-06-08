@@ -1,15 +1,16 @@
-﻿using Bot.Model.RoomPlaces;
+﻿using System.Threading.Tasks;
+using Bot.Model.RoomPlaces;
 using Bot.Model.Rooms;
 
 namespace Bot.Model
 {
     public interface IBotMapVisitor
     {
-        void VisitPicRoom(PicRoom picRoom);
-        void VisitActionRoom(ActionRoom actionRoom);
-        void VisitRoom(Room room);
-        void VisitActionRoomPlace(ActionRoomPlace actionRoomPlace);
-        void VisitButton(Button button);
-        void VisitButtonDialog(ButtonDialog buttonDialog);
+        Task VisitPicRoom(PicRoom picRoom);
+        Task VisitActionRoom(ActionRoom actionRoom);
+        Task VisitRoom(Room room);
+        Task VisitActionRoomPlace(ActionRoomPlace actionRoomPlace);
+        Task VisitButton(Button button);
+        Task VisitButtonDialog(ButtonDialog buttonDialog);
     }
 }

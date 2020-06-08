@@ -1,15 +1,16 @@
-﻿namespace Bot.Model.RoomPlaces
+﻿using System.Threading.Tasks;
+
+namespace Bot.Model.RoomPlaces
 {
     public class ActionRoomPlace : RoomPlace
     {
         public string ActionName { get; set; }
         public string ActionArgument { get; set; }
 
-        public override void Visit(IBotMapVisitor visitor)
+        public override async Task Visit(IBotMapVisitor visitor)
         {
-            visitor.VisitActionRoomPlace(this);
-
-            base.Visit(visitor);
+            await visitor.VisitActionRoomPlace(this);
+            await base.Visit(visitor);
         }
     }
 }

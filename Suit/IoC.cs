@@ -19,7 +19,7 @@ namespace Suit
 
 		public static void Configure(params Action<UnityContainer>[] confugureActions)
 		{
-			LogByNLogAndConsole.Configure(Assembly.GetExecutingAssembly());
+			LogByNLogAndConsole.Configure(Assembly.GetEntryAssembly());
 			Container.RegisterFactory<Func<string, ILogger>>(c => (Func<string, ILogger>)LogManager.GetLogger);
 			Container.RegisterType<ILog, LogByNLogAndConsole>();
 
