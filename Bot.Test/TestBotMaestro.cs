@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Bot.Extensions;
 using Bot.Model;
 using Bot.Model.Artifacts;
@@ -15,6 +16,8 @@ namespace Bot.Test
         public string[] Actions { get; set; }
         public BotMap Map { get; set; }
 
+        private State State { get; } = new State();
+
         public TestBotMaestro(ILog log, IBotMapVisitor visitor)
         {
             this.log = log;
@@ -27,40 +30,40 @@ namespace Bot.Test
             {
                 log.Debug($"");
 
-                //todo: состояние и проверка артифактов
-
                 if (action.StartsWith('/'))
                 {
                     var roomKey = action.Substring(1);
                     log.Debug($"click>{roomKey}");
+
+                    if (!State.CanGo(roomKey))
+                        throw new ApplicationException($"No artifact {roomKey}");
+
                     GoToRoom(roomKey);
                 }
                 else
                 {
-                    log.Debug($"type>{action}");
+                    Type(action);
                 }
             }
         }
 
-        public Artifact[] GoToRoom(string roomKey)
+        public void GoToRoom(string roomKey)
         {
             log.Debug($"=> {roomKey}");
 
             var room = Map.FindRoom(roomKey);
-            if (room == null)
-                throw new ApplicationException($"No room {roomKey}");
+
+            State.CurrentRoom = room;
 
             room.Visit(visitor);
 
             if (room.AutoGo.IsNotNullOrEmpty())
                 GoToRoom(room.AutoGo);
-
-            return room.Artifacts;
         }
 
-        public void Say(string message)
+        public void Type(string message)
         {
-            throw new System.NotImplementedException();
+            log.Debug($"type>{message}");
         }
     }
 }

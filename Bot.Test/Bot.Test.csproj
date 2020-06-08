@@ -16,10 +16,14 @@
     <None Remove="Content\room.png" />
     <None Remove="Content\tusa.png" />
     <None Remove="Content\Кафе.jpg" />
+    <None Remove="konfBot.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bot.json">
+    <Content Include="Bots\konfBot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bots\bot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bot.png">

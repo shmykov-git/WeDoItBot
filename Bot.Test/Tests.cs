@@ -17,15 +17,34 @@ namespace Bot.Test
         }
 
         [Test]
-        public void ClickTest()
+        public void BotTest()
         {
             var maestro = IoC.Get<TestBotMaestro>();
 
-            maestro.Map = File.ReadAllText("bot.json").FromNamedJson<BotMap>();
+            maestro.Map = File.ReadAllText("Bots/bot.json").FromNamedJson<BotMap>();
             maestro.Actions = new[]
             {
                 "/start",
                 "/secondRoom",
+                "/firstRoom",
+                "Что дальше?"
+            };
+
+            maestro.Start();
+        }
+
+        [Test]
+        public void KonfBotTest()
+        {
+            var maestro = IoC.Get<TestBotMaestro>();
+
+            maestro.Map = File.ReadAllText("Bots/konfBot.json").FromNamedJson<BotMap>();
+            maestro.Actions = new[]
+            {
+                "/start",
+                "/noTicket",
+                "/hasTicket",
+                "/konf",
                 "Что дальше?"
             };
 
