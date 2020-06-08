@@ -1,14 +1,13 @@
-﻿namespace Bot.Model.Rooms
+﻿using Bot.Model.Artifacts;
+
+namespace Bot.Model.Rooms
 {
     public class Room
     {
         public string Key { get; set; }
-
         public string AutoGo { get; set; }
 
-        public virtual void Visit(IBotMapVisitor visitor)
-        {
-            visitor.VisitRoom(this);
-        }
+        public virtual Artifact[] Artifacts => new Artifact[0];
+        public virtual void Visit(IBotMapVisitor visitor) => visitor.VisitRoom(this);
     }
 }

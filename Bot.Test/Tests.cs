@@ -19,41 +19,16 @@ namespace Bot.Test
         [Test]
         public void ClickTest()
         {
-            var log = IoC.Get<ILog>();
+            var maestro = IoC.Get<TestBotMaestro>();
 
-            var map = File.ReadAllText("bot.json").FromNamedJson<BotMap>();
-            var visitor = IoC.Get<TestBotMapVisitor>();
-
-            var actions = new[]
+            maestro.Map = File.ReadAllText("bot.json").FromNamedJson<BotMap>();
+            maestro.Actions = new[]
             {
                 "/start",
                 "„то дальше?"
             };
 
-            void GoToRoom(string key)
-            {
-                var room = map.Rooms.First(r => r.Key == key);
-                room.Visit(visitor);
-                if (room.AutoGo.IsNotNullOrEmpty())
-                    GoToRoom(room.AutoGo);
-            }
-
-            foreach (var action in actions)
-            {
-                if (action.StartsWith('/'))
-                {
-                    var cmd = action.Substring(1);
-                    GoToRoom(cmd);
-                }
-                else
-                {
-                    // нужен мастер дл€ работы по карте: текст, клики по ключам - что делает пользователь
-                    log.Debug($"");
-                    log.Debug($">{action}");
-                }
-            }
-
-            //map.Visit(visitor);
+            maestro.Start();
         }
     }
 }
