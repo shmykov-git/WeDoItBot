@@ -25,6 +25,7 @@ namespace Bot.Test
             maestro.Actions = new[]
             {
                 "/start",
+                "/secondRoom",
                 "Что дальше?"
             };
 

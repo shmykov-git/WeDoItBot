@@ -10,7 +10,7 @@
     {
       "$type": "Bot.Model.Rooms.PicRoom, Bot",
       "Key": "firstRoom",
-      "Name": "Шаблон комнаты с картинкой",
+      "Name": "Первая комната",
       "Pic": "room.png",
       "Description": "Эта комната для чего-то создана и тут что-то можно делать",
       "Places": [
@@ -18,6 +18,30 @@
           "$type": "Bot.Model.RoomPlaces.ActionRoomPlace, Bot",
           "ActionName": "RoomVisited",
           "ActionArgument": "firstRoom"
+        },
+        {
+          "$type": "Bot.Model.RoomPlaces.Button, Bot",
+          "Key": "secondRoom",
+          "Name": "Вторая комната"
+        }
+      ]
+    },
+    {
+      "$type": "Bot.Model.Rooms.PicRoom, Bot",
+      "Key": "secondRoom",
+      "Name": "Вторая комната",
+      "Pic": "room2.png",
+      "Description": "Сюда можно попасть из первой комнаты или откуда-то еще",
+      "Places": [
+        {
+          "$type": "Bot.Model.RoomPlaces.ActionRoomPlace, Bot",
+          "ActionName": "RoomVisited",
+          "ActionArgument": "secondRoom"
+        },
+        {
+          "$type": "Bot.Model.RoomPlaces.Button, Bot",
+          "Key": "firstRoom",
+          "Name": "Первая комната"
         }
       ]
     }

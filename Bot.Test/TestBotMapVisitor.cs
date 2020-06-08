@@ -24,7 +24,7 @@ namespace Bot.Test
         public void VisitRoom(Room room)
         {
             if (room.AutoGo.IsNotNullOrEmpty())
-                log.Debug($"=> {room.AutoGo}");
+                log.Debug($"AutoGo: {room.AutoGo}");
         }
 
         public void VisitActionRoomPlace(ActionRoomPlace actionRoomPlace)
@@ -34,7 +34,7 @@ namespace Bot.Test
 
         public void VisitButton(Button button)
         {
-            log.Debug($"<Button key={button.Key}>{button.Name}</Button>");
+            log.Debug($"<Button key=\"{button.Key}\">{button.Name}</Button>");
         }
 
         public void VisitButtonDialog(ButtonDialog buttonDialog)

@@ -25,21 +25,27 @@ namespace Bot.Test
         {
             foreach (var action in Actions)
             {
+                log.Debug($"");
+
+                //todo: состояние и проверка артифактов
+
                 if (action.StartsWith('/'))
                 {
                     var roomKey = action.Substring(1);
+                    log.Debug($"click>{roomKey}");
                     GoToRoom(roomKey);
                 }
                 else
                 {
-                    log.Debug($"");
-                    log.Debug($">{action}");
+                    log.Debug($"type>{action}");
                 }
             }
         }
 
         public Artifact[] GoToRoom(string roomKey)
         {
+            log.Debug($"=> {roomKey}");
+
             var room = Map.FindRoom(roomKey);
             if (room == null)
                 throw new ApplicationException($"No room {roomKey}");
