@@ -41,7 +41,9 @@ namespace Bot.Test
 
         public Task VisitButton(Button button)
         {
-            log.Debug(button.Caption);
+            if (button.Caption.IsNotNullOrEmpty())
+                log.Debug(button.Caption);
+
             log.Debug($"<Button key=\"{button.Key}\">{button.Name}</Button>");
 
             return Task.CompletedTask;
@@ -49,7 +51,7 @@ namespace Bot.Test
 
         public Task VisitButtonDialog(ButtonDialog buttonDialog)
         {
-            log.Debug($"???{buttonDialog.Question}");
+            log.Debug($"???{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
             buttonDialog.Buttons.ForEach(async b => await VisitButton(b));
 
             return Task.CompletedTask;
@@ -59,9 +61,15 @@ namespace Bot.Test
         {
             log.Debug("");
             log.Debug($"({picRoom.Key})");
-            log.Debug(picRoom.Name);
-            log.Debug($"^^{picRoom.Pic}^^");
-            log.Debug(picRoom.Description);
+
+            if (picRoom.Name.IsNotNullOrEmpty())
+                log.Debug(picRoom.Name);
+
+            if (picRoom.Pic.IsNotNullOrEmpty())
+                log.Debug($"^^{picRoom.Pic}^^");
+
+            if (picRoom.Description.IsNotNullOrEmpty())
+                log.Debug(picRoom.Description);
 
             return Task.CompletedTask;
         }

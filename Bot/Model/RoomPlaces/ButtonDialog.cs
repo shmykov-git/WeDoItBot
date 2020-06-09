@@ -6,7 +6,8 @@ namespace Bot.Model.RoomPlaces
 {
     public class ButtonDialog : RoomPlace
     {
-        public string Question { get; set; }
+        public int ColumnsCount { get; set; } = 1;
+        public string Caption { get; set; }
         public Button[] Buttons { get; set; }
 
         public override Artifact[] Artifacts => Buttons.Select(b => new Artifact() { Go = b.Key }).ToArray();

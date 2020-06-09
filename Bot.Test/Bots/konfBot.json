@@ -10,13 +10,12 @@
     {
       "$type": "Bot.Model.Rooms.PicRoom, Bot",
       "Key": "hiRoom",
-      "Name": "Кто я - бот",
-      "Pic": "mebot.jpg",
-      "Description": "Привет, я бот - твой помошник для конференции Цифровой прорыв",
+      "Pic": "emebot.jpg",
       "Places": [
         {
           "$type": "Bot.Model.RoomPlaces.ButtonDialog, Bot",
-          "Question": "У тебя есть билет на эту конференцию",
+          "Caption": "Привет, я бот - твой помошник для конференции Цифровой прорыв. Ты уже купил билет?",
+          "ColumnsCount": 2,
           "Buttons": [
             {
               "Key": "hasTicket",
@@ -33,36 +32,32 @@
     {
       "$type": "Bot.Model.Rooms.PicRoom, Bot",
       "Key": "noTicket",
-      "Name": "Нет билета",
       "Pic": "noticket.png",
-      "Description": "В этой комнате будет организована покупка билета",
       "Places": [
         {
           "$type": "Bot.Model.RoomPlaces.Button, Bot",
-          "Caption": "Выход",
+          "Caption": "Наша конференция платная, пожалуйста купи билет в нашей электронной кассе",
           "Key": "hasTicket",
-          "Name": "Будем считать, что билет куплен и вы теперь можете посетить конференцию"
+          "Name": "Покупка билета. Конференция."
         }
       ]
     },
     {
       "$type": "Bot.Model.Rooms.PicRoom, Bot",
       "Key": "hasTicket",
-      "Name": "Конференция Цифровой прорыв",
-      "Pic": "konf.png",
-      "Description": "Вы можете не только узнать всю нужную вам информацию о конференции, но также попробовать найти нужных вам людей",
+      "Pic": "service.jpeg",
       "Places": [
         {
           "$type": "Bot.Model.RoomPlaces.ButtonDialog, Bot",
-          "Question": "Что будем делать?",
+          "Caption": "Конференция Цифровой прорыв. Что вас интересует?",
           "Buttons": [
             {
               "Key": "konf",
-              "Name": "Иду на конференцию"
+              "Name": "Посетить конференцию"
             },
             {
               "Key": "roadmap",
-              "Name": "Мне нужен человек"
+              "Name": "Сервис поиска партнеров"
             }
           ]
         }
@@ -71,13 +66,11 @@
     {
       "$type": "Bot.Model.Rooms.PicRoom, Bot",
       "Key": "konf",
-      "Name": "Добро пожаловать на конференцию Цифровой прорыв",
       "Pic": "konf.png",
-      "Description": "На конференции представлены ряд тем, вы можете получить по каждой полную информацию",
       "Places": [
         {
           "$type": "Bot.Model.RoomPlaces.ButtonDialog, Bot",
-          "Question": "Темы конференции",
+          "Caption": "На конференции представлены ряд тем, вы можете получить по каждой полную информацию",
           "Buttons": [
             {
               "Key": "themeProduct",

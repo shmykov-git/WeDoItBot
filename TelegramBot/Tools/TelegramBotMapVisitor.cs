@@ -65,12 +65,16 @@ namespace TelegramBot.Tools
         public async Task VisitButtonDialog(ButtonDialog buttonDialog)
         {
             log.Debug($"VisitButtonDialog");
-            await SendDialog(buttonDialog.Question,
-                new InlineKeyboardMarkup(new[]
-                {
-                    buttonDialog.Buttons.Select(button =>
-                        InlineKeyboardButton.WithCallbackData(button.Name, $"{button.Key}")).ToArray()
-                }));
+
+            await SendDialog(buttonDialog.Caption,
+                new InlineKeyboardMarkup(
+                    buttonDialog.Buttons
+                        .ByIndex()
+                        .GroupBy(i => i / buttonDialog.ColumnsCount)
+                        .Select(gi => gi.Select(i => buttonDialog.Buttons[i]).Select(button =>
+                            InlineKeyboardButton.WithCallbackData(button.Name, $"{button.Key}")).ToArray())
+                        .ToArray()
+                ));
         }
 
         public async Task VisitPicRoom(PicRoom picRoom)
@@ -84,6 +88,9 @@ namespace TelegramBot.Tools
 
         private async Task SendText(string text)
         {
+            if (text.IsNullOrEmpty())
+                return;
+
             await Bot.SendTextMessageAsync(ChatId, text);
         }
 
