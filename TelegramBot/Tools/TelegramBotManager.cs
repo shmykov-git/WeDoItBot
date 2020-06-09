@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Net;
+using Bot.Extensions;
 using Bot.Model;
 using Suit.Aspects;
-using Suit.Extensions;
 using Suit.Logs;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -30,7 +30,7 @@ namespace TelegramBot.Tools
             this.settings = settings;
             this.createUserContextFn = createUserContextFn;
 
-            botMap = File.ReadAllText(settings.BotMapFile).FromNamedJson<BotMap>();
+            botMap = File.ReadAllText(settings.BotMapFile).ToBotMap();
         }
 
         private TelegramUserContext GetContext(CallbackQuery query)

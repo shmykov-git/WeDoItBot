@@ -31,14 +31,14 @@ namespace TelegramBot.Tools
             Command("start");
         }
 
-        public void Command(string command)
+        public async void Command(string command)
         {
             log.Debug($"#Command: {command}");
             var room = context.Map.FindRoom(command);
 
             context.State.CurrentRoom = room;
 
-            room.Visit(context.Visitor);
+            await room.Visit(context.Visitor);
 
             if (room.AutoGo.IsNotNullOrEmpty())
                 Command(room.AutoGo);

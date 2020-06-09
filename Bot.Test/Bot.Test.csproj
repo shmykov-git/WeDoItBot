@@ -7,15 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="bot.json" />
     <None Remove="konfBot.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Bots\konfBot.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Bots\bot.json">
+    <Content Include="bot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

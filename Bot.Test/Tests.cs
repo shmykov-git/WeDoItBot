@@ -1,10 +1,7 @@
 using System.IO;
-using System.Linq;
-using Bot.Model;
+using Bot.Extensions;
 using NUnit.Framework;
 using Suit;
-using Suit.Extensions;
-using Suit.Logs;
 
 namespace Bot.Test
 {
@@ -21,24 +18,8 @@ namespace Bot.Test
         {
             var maestro = IoC.Get<TestBotMaestro>();
 
-            maestro.Map = File.ReadAllText("Bots/bot.json").FromNamedJson<BotMap>();
-            maestro.Actions = new[]
-            {
-                "/start",
-                "/secondRoom",
-                "/firstRoom",
-                "Что дальше?"
-            };
+            maestro.Map = File.ReadAllText("bot.json").ToBotMap();
 
-            maestro.Start();
-        }
-
-        [Test]
-        public void KonfBotTest()
-        {
-            var maestro = IoC.Get<TestBotMaestro>();
-
-            maestro.Map = File.ReadAllText("Bots/konfBot.json").FromNamedJson<BotMap>();
             maestro.Actions = new[]
             {
                 "/start",
