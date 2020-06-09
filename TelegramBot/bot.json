@@ -8,7 +8,7 @@
     {
       "Key": "hi",
       "Type": "Ask",
-      "Pic": "emebot.jpg",
+      "Pic": "emebot",
       "Caption": "Привет, я бот - твой помошник для конференции Цифровой прорыв. Ты уже купил билет?",
       "YesGo": "hasTicket",
       "NoGo": "noTicket"
@@ -16,14 +16,14 @@
     {
       "Key": "noTicket",
       "Type": "Say",
-      "Pic": "noticket.png",
+      "Pic": "noticket",
       "Caption": "Наша конференция платная, пожалуйста купи билет в нашей электронной кассе",
       "Go": "hasTicket"
     },
     {
       "Key": "hasTicket",
       "Type": "List",
-      "Pic": "service.jpeg",
+      "Pic": "service",
       "Caption": "Конференция Цифровой прорыв. Что вас интересует?",
       "Buttons": [
         {
@@ -39,7 +39,7 @@
     {
       "Key": "konf",
       "Type": "List",
-      "Pic": "konf.png",
+      "Pic": "konf",
       "Caption": "На конференции представлены ряд тем, вы можете получить по каждой полную информацию",
       "Buttons": [
         {

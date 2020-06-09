@@ -18,14 +18,16 @@ namespace TelegramBot.Tools
     class TelegramBotMapVisitor: IBotMapVisitor
     {
         private readonly ILog log;
+        private readonly ContentManager contentManager;
         private readonly TelegramUserContext context;
 
         private TelegramBotClient Bot => context.Bot;
         private long ChatId => context.Message.Chat.Id;
 
-        public TelegramBotMapVisitor(ILog log, TelegramUserContext context)
+        public TelegramBotMapVisitor(ILog log, ContentManager contentManager, TelegramUserContext context)
         {
             this.log = log;
+            this.contentManager = contentManager;
             this.context = context;
         }
 
@@ -101,19 +103,8 @@ namespace TelegramBot.Tools
 
         private async Task SendPic(string pic)
         {
-            var fileName = $"Content/{pic}";
-
-            if (File.Exists(fileName))
-            {
-                using (var stream = File.OpenRead(fileName))
-                {
-                    await Bot.SendPhotoAsync(ChatId, new InputOnlineFile(stream));
-                }
-            }
-            else
-            {
+            if (!await contentManager.Apply(pic, async stream => await Bot.SendPhotoAsync(ChatId, new InputOnlineFile(stream))))
                 log.Warn($"No pic {pic}");
-            }
         }
 
     }

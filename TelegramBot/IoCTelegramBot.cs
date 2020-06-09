@@ -19,11 +19,13 @@ namespace TelegramBot
                 var context = new TelegramUserContext(IoC.Get<ILog>());
 
                 context.Bot = IoC.Get<TelegramBotManager>().Bot;
-                context.Visitor = new TelegramBotMapVisitor(IoC.Get<ILog>(), context);
+                context.Visitor = new TelegramBotMapVisitor(IoC.Get<ILog>(), IoC.Get<ContentManager>(), context);
                 context.Maestro = new TelegramBotMaestro(IoC.Get<ILog>(), context);
 
                 return context;
             }));
+
+            container.RegisterSingleton<ContentManager>();
         }
     }
 }
