@@ -1,12 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Bot.Model.RoomPlaces;
 
 namespace Bot.Model.Rooms.Simple
 {
     public class ListRoom : PicRoom
     {
-        public string Caption { get; set; }
-        public Button[] Buttons { get; set; }
+        public string List { get; set; }
+        public ListItem[] Items { get; set; }
 
         public override async Task Visit(IBotMapVisitor visitor)
         {
@@ -14,8 +15,8 @@ namespace Bot.Model.Rooms.Simple
             {
                 new ButtonDialog()
                 {
-                    Caption = Caption,
-                    Buttons = Buttons
+                    Caption = List,
+                    Buttons = Items.Select(item => new Button() {Name = item.Button, Go = item.Go}).ToArray(),
                 },
             };
 

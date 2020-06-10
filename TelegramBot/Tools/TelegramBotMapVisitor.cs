@@ -59,7 +59,7 @@ namespace TelegramBot.Tools
             {
                 new[]
                 {
-                    InlineKeyboardButton.WithCallbackData(button.Name, $"{button.Key}"),
+                    InlineKeyboardButton.WithCallbackData(button.Name, $"{button.Go}"),
                 }
             }));
         }
@@ -74,9 +74,24 @@ namespace TelegramBot.Tools
                         .ByIndex()
                         .GroupBy(i => i / buttonDialog.ColumnsCount)
                         .Select(gi => gi.Select(i => buttonDialog.Buttons[i]).Select(button =>
-                            InlineKeyboardButton.WithCallbackData(button.Name, $"{button.Key}")).ToArray())
+                            InlineKeyboardButton.WithCallbackData(button.Name, $"{button.Go}")).ToArray())
                         .ToArray()
                 ));
+        }
+
+        public async Task VisitButtonMenu(ButtonMenu buttonDialog)
+        {
+            log.Debug($"VisitButtonMenu");
+
+            //await SendDialog(buttonDialog.Caption,
+            //    new ReplyKeyboardMarkup(
+            //        buttonDialog.Buttons
+            //            .ByIndex()
+            //            .GroupBy(i => i / buttonDialog.ColumnsCount)
+            //            .Select(gi => gi.Select(i => buttonDialog.Buttons[i]).Select(button =>
+            //                KeyboardButton.WithRequestPoll(button.Name, $"{button.Go}")).ToArray())
+            //            .ToArray()
+            //    ));
         }
 
         public async Task VisitPicRoom(PicRoom picRoom)

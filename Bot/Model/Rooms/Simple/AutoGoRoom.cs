@@ -2,6 +2,6 @@
 
 namespace Bot.Model.Rooms.Simple
 {
-    public class GoRoom : Room
+    public class AutoGoRoom : Room
     { }
 }

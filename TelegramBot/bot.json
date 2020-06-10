@@ -1,56 +1,70 @@
 ﻿{
   "Rooms": [
     {
-      "Key": "start",
-      "Type": "Go",
-      "AutoGo": "hi"
+      "Id": "start",
+      "AutoGo": "emebot"
     },
     {
-      "Key": "hi",
-      "Type": "Ask",
-      "Pic": "emebot",
-      "Caption": "Привет, я бот - твой помошник для конференции Цифровой прорыв. Ты уже купил билет?",
-      "YesGo": "hasTicket",
+      "Id": "emebot",
+      "Ask": "Привет, я бот - твой помошник для конференции Цифровой прорыв. Ты уже купил билет?",
+      "YesGo": "service",
       "NoGo": "noTicket"
     },
     {
-      "Key": "noTicket",
-      "Type": "Say",
-      "Pic": "noticket",
-      "Caption": "Наша конференция платная, пожалуйста купи билет в нашей электронной кассе",
+      "Id": "noTicket",
+      "Say": "Наша конференция платная, пожалуйста купи билет в нашей электронной кассе",
       "Go": "hasTicket"
     },
     {
-      "Key": "hasTicket",
-      "Type": "List",
-      "Pic": "service",
-      "Caption": "Конференция Цифровой прорыв. Что вас интересует?",
-      "Buttons": [
+      "Id": "service",
+      "List": "Конференция Цифровой прорыв. Что вас интересует?",
+      "Items": [
         {
-          "Key": "konf",
-          "Name": "Посетить конференцию"
+          "Button": "Посетить конференцию",
+          "Go": "konf"
         },
         {
-          "Key": "roadmap",
-          "Name": "Сервис поиска партнеров"
+          "Button": "Сервис поиска партнеров",
+          "Go": "roadmap"
         }
       ]
     },
     {
-      "Key": "konf",
-      "Type": "List",
-      "Pic": "konf",
-      "Caption": "На конференции представлены ряд тем, вы можете получить по каждой полную информацию",
-      "Buttons": [
+      "Id": "konf",
+      "List": "На конференции представлены ряд тем, вы можете получить по каждой полную информацию",
+      "Items": [
         {
-          "Key": "themeProduct",
-          "Name": "Продажа продукта"
+          "Button": "Продажа продукта",
+          "Go": "themeProduct"
         },
         {
-          "Key": "themeProductDisign",
-          "Name": "Дизайн продукта"
+          "Button": "Дизайн продукта",
+          "Go": "themeProductDisign"
         }
       ]
+    },
+    {
+      "Id": "roadmap",
+      "List": "Кого будем искать?",
+      "Items": [
+        {
+          "Button": "Продакт-менеджер",
+          "Go": "underconstruction"
+        },
+        {
+          "Button": "Дизайнер",
+          "Go": "underconstruction"
+        },
+        {
+          "Button": "Программист",
+          "Go": "underconstruction"
+        }
+      ]
+    },
+    {
+      "Id": "underconstruction",
+      "Say": "Это пока не готово",
+      "Go": "start" 
     }
   ]
 }

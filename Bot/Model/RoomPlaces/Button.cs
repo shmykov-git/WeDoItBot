@@ -6,10 +6,10 @@ namespace Bot.Model.RoomPlaces
     public class Button : RoomPlace
     {
         public string Caption { get; set; }
-        public string Key { get; set; }
+        public string Go { get; set; }
         public string Name { get; set; }
 
-        public override Artifact[] Artifacts => new[] {new Artifact() {Go = Key}};
+        public override Artifact[] Artifacts => new[] {new Artifact() {Go = Go}};
 
         public override async Task Visit(IBotMapVisitor visitor)
         {

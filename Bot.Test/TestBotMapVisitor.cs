@@ -44,7 +44,7 @@ namespace Bot.Test
             if (button.Caption.IsNotNullOrEmpty())
                 log.Debug(button.Caption);
 
-            log.Debug($"<Button key=\"{button.Key}\">{button.Name}</Button>");
+            log.Debug($"<Button key=\"{button.Go}\">{button.Name}</Button>");
 
             return Task.CompletedTask;
         }
@@ -52,6 +52,15 @@ namespace Bot.Test
         public Task VisitButtonDialog(ButtonDialog buttonDialog)
         {
             log.Debug($"???{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
+            buttonDialog.Buttons.ForEach(async b => await VisitButton(b));
+
+            return Task.CompletedTask;
+        }
+
+        public Task VisitButtonMenu(ButtonMenu buttonDialog)
+        {
+            log.Debug($"???{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
+            log.Debug("========================");
             buttonDialog.Buttons.ForEach(async b => await VisitButton(b));
 
             return Task.CompletedTask;

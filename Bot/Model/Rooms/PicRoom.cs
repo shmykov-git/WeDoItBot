@@ -4,8 +4,15 @@ namespace Bot.Model.Rooms
 {
     public class PicRoom : ShowRoom
     {
+        private string pic;
         public string Name { get; set; }
-        public string Pic { get; set; }
+
+        public string Pic
+        {
+            get => pic ?? Id;
+            set => pic = value;
+        }
+
         public string Description { get; set; }
 
         public override async Task Visit(IBotMapVisitor visitor)

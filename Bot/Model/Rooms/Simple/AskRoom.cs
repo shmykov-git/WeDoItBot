@@ -5,7 +5,7 @@ namespace Bot.Model.Rooms.Simple
 {
     public class AskRoom : PicRoom
     {
-        public string Caption { get; set; }
+        public string Ask { get; set; }
         public string YesGo { get; set; }
         public string NoGo { get; set; }
 
@@ -15,11 +15,11 @@ namespace Bot.Model.Rooms.Simple
             {
                 new ButtonDialog()
                 {
-                    Caption = Caption,
+                    Caption = Ask,
                     Buttons = new []
                     {
-                        new Button(){Key = YesGo, Name = "Да"},
-                        new Button(){Key = NoGo, Name = "Нет"},
+                        new Button(){Go = YesGo, Name = "Да"},
+                        new Button(){Go = NoGo, Name = "Нет"},
                     },
                     ColumnsCount = 2
                 },

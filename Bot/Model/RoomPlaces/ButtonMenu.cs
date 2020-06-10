@@ -4,7 +4,7 @@ using Bot.Model.Artifacts;
 
 namespace Bot.Model.RoomPlaces
 {
-    public class ButtonDialog : RoomPlace
+    public class ButtonMenu : RoomPlace
     {
         public int ColumnsCount { get; set; } = 1;
         public string Caption { get; set; }
@@ -14,8 +14,9 @@ namespace Bot.Model.RoomPlaces
 
         public override async Task Visit(IBotMapVisitor visitor)
         {
-            await visitor.VisitButtonDialog(this);
+            await visitor.VisitButtonMenu(this);
             await base.Visit(visitor);
         }
+
     }
 }

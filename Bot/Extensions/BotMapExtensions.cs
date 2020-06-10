@@ -9,6 +9,8 @@ namespace Bot.Extensions
 {
     public static class BotMapExtensions
     {
+        private static string[] roomTypes = {"AutoGo", "Ask", "List", "Say"};
+
         public static BotMap ToBotMap(this string jsonStr)
         {
             var json = jsonStr.FromJson<JObject>();
@@ -17,6 +19,15 @@ namespace Bot.Extensions
             {
                 if (jRoom.ContainsKey("Type"))
                     jRoom.AddFirst(new JProperty("$type", $"Bot.Model.Rooms.Simple.{jRoom["Type"]}Room, Bot"));
+
+                foreach (var roomType in roomTypes)
+                {
+                    if (jRoom.ContainsKey(roomType))
+                    {
+                        jRoom.AddFirst(new JProperty("$type", $"Bot.Model.Rooms.Simple.{roomType}Room, Bot"));
+                        break;
+                    }
+                }
             }
 
             return json.ToObject<BotMap>(new JsonSerializer() {TypeNameHandling = TypeNameHandling.All});

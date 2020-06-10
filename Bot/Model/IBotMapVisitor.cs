@@ -12,5 +12,6 @@ namespace Bot.Model
         Task VisitActionRoomPlace(ActionRoomPlace actionRoomPlace);
         Task VisitButton(Button button);
         Task VisitButtonDialog(ButtonDialog buttonDialog);
+        Task VisitButtonMenu(ButtonMenu buttonDialog);
     }
 }
