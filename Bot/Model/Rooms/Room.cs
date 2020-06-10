@@ -18,9 +18,6 @@ namespace Bot.Model.Rooms
 
         public string AutoGo { get; set; }
 
-        public virtual Artifact[] Artifacts =>
-            AutoGo.IsNullOrEmpty() ? new Artifact[0] : new[] {new Artifact() {Go = AutoGo}};
-
         public virtual async Task Visit(IBotMapVisitor visitor)
         {
             await visitor.VisitRoom(this);

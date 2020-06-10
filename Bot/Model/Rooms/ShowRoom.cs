@@ -10,8 +10,6 @@ namespace Bot.Model.Rooms
     {
         public RoomPlace[] Places { get; set; }
 
-        public override Artifact[] Artifacts => Places.SelectMany(p => p.Artifacts).ToArray();
-
         public override async Task Visit(IBotMapVisitor visitor)
         {
             Places?.ForEach(async p => await p.Visit(visitor));

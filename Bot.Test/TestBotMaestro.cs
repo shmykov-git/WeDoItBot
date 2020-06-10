@@ -44,18 +44,15 @@ namespace Bot.Test
             }
         }
 
-        public void Command(string command)
+        public async void Command(string command)
         {
             log.Debug($"=> {command}");
-
-            if (!State.CanGo(command))
-                throw new ApplicationException($"No artifact {command}");
 
             var room = Map.FindRoom(command);
 
             State.CurrentRoom = room;
 
-            room.Visit(visitor);
+            await room.Visit(visitor);
 
             if (room.AutoGo.IsNotNullOrEmpty())
                 Command(room.AutoGo);

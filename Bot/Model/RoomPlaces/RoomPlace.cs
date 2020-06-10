@@ -6,7 +6,6 @@ namespace Bot.Model.RoomPlaces
 {
     public class RoomPlace
     {
-        public virtual Artifact[] Artifacts => new Artifact[0];
         public virtual async Task Visit(IBotMapVisitor visitor) { }
     }
 }

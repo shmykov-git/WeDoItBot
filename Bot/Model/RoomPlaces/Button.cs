@@ -9,8 +9,6 @@ namespace Bot.Model.RoomPlaces
         public string Go { get; set; }
         public string Name { get; set; }
 
-        public override Artifact[] Artifacts => new[] {new Artifact() {Go = Go}};
-
         public override async Task Visit(IBotMapVisitor visitor)
         {
             await visitor.VisitButton(this);

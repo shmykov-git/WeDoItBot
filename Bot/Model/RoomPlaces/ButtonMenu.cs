@@ -10,8 +10,6 @@ namespace Bot.Model.RoomPlaces
         public string Caption { get; set; }
         public Button[] Buttons { get; set; }
 
-        public override Artifact[] Artifacts => Buttons.Select(b => new Artifact() { Go = b.Go }).ToArray();
-
         public override async Task Visit(IBotMapVisitor visitor)
         {
             await visitor.VisitButtonMenu(this);

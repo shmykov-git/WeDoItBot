@@ -69,7 +69,7 @@ namespace TelegramBot.Tools
         {
             var proxy = new WebProxy(settings.ProxyHost);
             Bot = new TelegramBotClient(settings.BotToken, proxy);
-
+            
             Bot.OnMessage += (o, a) =>
             {
                 try
