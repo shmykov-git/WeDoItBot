@@ -37,14 +37,21 @@ namespace TelegramBot.Tools
             var room = context.Map.FindRoom(command);
 
             context.State.CurrentRoom = room;
+            context.State.StateType = StateType.None;
 
             await room.Visit(context.Visitor);
 
-            if (room.AutoGo.IsNotNullOrEmpty())
+            if (room is ShowRoom showRoom)
+            {
+                if (showRoom.EnterPlace != null)
+                    context.State.StateType = StateType.WaitingForAnswer;
+            }
+
+            if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
                 Command(room.AutoGo);
         }
 
-        public void Type(string message)
+        public async void Type(string message)
         {
             log.Debug($"#Type: {message}");
             if (IsCommand(message))
@@ -54,7 +61,22 @@ namespace TelegramBot.Tools
                 return;
             }
 
-            // type
+            if (context.State.StateType == StateType.WaitingForAnswer)
+            {
+                var key = (context.State.CurrentRoom as ShowRoom).EnterPlace.Key;
+
+                context.State.Values.TryAdd(key, message);
+
+                var room = context.State.CurrentRoom;
+
+                await room.Visit(context.Visitor);
+
+                if ((room as ShowRoom)?.EnterPlace == null)
+                    context.State.StateType = StateType.None;
+
+                if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
+                    Command(room.AutoGo);
+            }
         }
     }
 }

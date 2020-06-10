@@ -26,6 +26,10 @@
         {
           "Button": "Сервис поиска партнеров",
           "Go": "roadmap"
+        },
+        {
+          "Button": "Заполнить профиль",
+          "Go": "enterProfile"
         }
       ]
     },
@@ -64,7 +68,26 @@
     {
       "Id": "underconstruction",
       "Say": "Это пока не готово",
-      "Go": "start" 
+      "Go": "start"
+    },
+    {
+      "Id": "enterProfile",
+      "Enter": "Ввод профиля",
+      "Items": [
+        {
+          "Key": "Name",
+          "Name": "Как вас зовут?"
+        },
+        {
+          "Key": "Age",
+          "Name": "Сколько вам лет?"
+        },
+        {
+          "Key": "Army",
+          "Name": "Служили ли вы в армии?"
+        }
+      ],
+      "AutoGo": "service"
     }
   ]
 }

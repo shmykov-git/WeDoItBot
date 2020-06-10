@@ -7,6 +7,6 @@ namespace Bot.Model
     {
         public Room CurrentRoom { get; set; }
         public ConcurrentDictionary<string, string> Values = new ConcurrentDictionary<string, string>();
-        public StateType StateType { get; set; } = StateType.Any;
+        public StateType StateType { get; set; } = StateType.None;
     }
 }

@@ -95,12 +95,19 @@ namespace TelegramBot.Tools
                 ));
         }
 
+        public async Task EnterPlace(EnterPlace enterPlace)
+        {
+            log.Debug($"EnterPlace");
+
+            await SendText(enterPlace.Name);
+        }
+
         public async Task VisitPicRoom(PicRoom picRoom)
         {
             log.Debug($"VisitPicRoom");
             await SendText(picRoom.Name);
             await SendPic(picRoom.Pic);
-            await SendText(picRoom.Description);
+            await SendText(picRoom.Caption);
         }
 
 

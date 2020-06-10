@@ -2,7 +2,7 @@
 {
     public enum StateType
     {
-        Any,
+        None,
         WaitingForAnswer
     }
 }

@@ -66,6 +66,13 @@ namespace Bot.Test
             return Task.CompletedTask;
         }
 
+        public Task EnterPlace(EnterPlace enterPlace)
+        {
+            log.Debug($"{enterPlace.Name} ({enterPlace.Key}): _____");
+
+            return Task.CompletedTask;
+        }
+
         public Task VisitPicRoom(PicRoom picRoom)
         {
             log.Debug("");
@@ -77,8 +84,8 @@ namespace Bot.Test
             if (picRoom.Pic.IsNotNullOrEmpty())
                 log.Debug($"^^{picRoom.Pic}^^");
 
-            if (picRoom.Description.IsNotNullOrEmpty())
-                log.Debug(picRoom.Description);
+            if (picRoom.Caption.IsNotNullOrEmpty())
+                log.Debug(picRoom.Caption);
 
             return Task.CompletedTask;
         }

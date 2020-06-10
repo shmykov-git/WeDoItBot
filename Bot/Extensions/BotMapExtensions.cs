@@ -9,7 +9,8 @@ namespace Bot.Extensions
 {
     public static class BotMapExtensions
     {
-        private static string[] roomTypes = {"AutoGo", "Ask", "List", "Say"};
+        //todo: reflection, order
+        private static string[] roomTypes = {"Ask", "List", "Say", "Enter", "AutoGo" };
 
         public static BotMap ToBotMap(this string jsonStr)
         {

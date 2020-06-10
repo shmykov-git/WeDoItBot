@@ -13,11 +13,12 @@ namespace Bot.Model.Rooms
             set => pic = value;
         }
 
-        public string Description { get; set; }
+        public string Caption { get; set; }
 
         public override async Task Visit(IBotMapVisitor visitor)
         {
-            await visitor.VisitPicRoom(this);
+            if (EnterPlace == null)
+                await visitor.VisitPicRoom(this);
 
             await base.Visit(visitor);
         }
