@@ -29,6 +29,8 @@ namespace TelegramBot.Tools
             this.log = log;
             this.contentManager = contentManager;
             this.context = context;
+
+            contentManager.AddContentFolder(context.Bot.ContentFolder);
         }
 
         public async Task VisitActionRoom(ActionRoom actionRoom)
@@ -60,6 +62,7 @@ namespace TelegramBot.Tools
         public async Task VisitButton(Button button)
         {
             log.Debug($"VisitButton");
+
             await SendDialog(button.Caption, new InlineKeyboardMarkup(new[]
             {
                 new[]
@@ -120,6 +123,9 @@ namespace TelegramBot.Tools
         {
             if (text.IsNullOrEmpty())
                 return;
+
+            if (text.Length > 4096)
+                text = text.Substring(0, 4096);
 
             await Client.SendTextMessageAsync(ChatId, text);
         }

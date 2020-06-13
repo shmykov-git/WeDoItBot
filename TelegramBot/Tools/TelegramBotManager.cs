@@ -71,7 +71,11 @@ namespace TelegramBot.Tools
         {
             Bots = settings.Bots.Select(botSettings =>
             {
-                var bot = new SingleBot() {Name = botSettings.Name};
+                var bot = new SingleBot()
+                {
+                    Name = botSettings.Name,
+                    ContentFolder = botSettings.Content,
+                };
 
                 bot.BotConfig = File.ReadAllText(botSettings.BotMapFile);
                 bot.Map = bot.BotConfig.ToBotMap();

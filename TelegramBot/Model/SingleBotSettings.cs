@@ -8,5 +8,6 @@ namespace TelegramBot.Model
         public string BotMapFile { get; set; }
         public Uri ProxyHost { get; set; }
         public string BotToken { get; set; }
+        public string Content { get; set; }
     }
 }

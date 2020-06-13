@@ -8,6 +8,7 @@ namespace TelegramBot.Model
         public string Name { get; set; }
         public string BotConfig { get; set; }
         public BotMap Map { get; set; }
+        public string ContentFolder { get; set; }
         public TelegramBotClient Client { get; set; }
     }
 }

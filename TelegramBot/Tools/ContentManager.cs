@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Suit.Extensions;
 
 namespace TelegramBot.Tools
 {
@@ -12,14 +13,20 @@ namespace TelegramBot.Tools
 
         public ContentManager()
         {
-            LoadItems();
+            AddContentFolder(ContentFolder);
         }
 
-        private void LoadItems()
+        public void AddContentFolder(string contentFolder)
         {
-            foreach (var fileName in Directory.GetFiles(ContentFolder))
+            if (contentFolder.IsNullOrEmpty())
+                return;
+
+            foreach (var fileName in Directory.GetFiles(contentFolder))
             {
-                items.Add(Path.GetFileNameWithoutExtension(fileName).ToLower(), File.ReadAllBytes(fileName));
+                var key = Path.GetFileNameWithoutExtension(fileName).ToLower();
+                var bytes = File.ReadAllBytes(fileName);
+
+                items.TryAdd(key, bytes);
             }
         }
 

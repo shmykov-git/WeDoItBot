@@ -23,6 +23,7 @@ namespace TelegramBot
             BotMapFile = bot[nameof(SingleBotSettings.BotMapFile)].ToString(),
             BotToken = bot[nameof(SingleBotSettings.BotToken)].ToString(),
             ProxyHost = new Uri(bot[nameof(SingleBotSettings.ProxyHost)].ToString()),
+            Content = bot[nameof(SingleBotSettings.Content)].ToString()
         }).ToArray();
     }
 }
