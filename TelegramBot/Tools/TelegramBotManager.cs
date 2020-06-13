@@ -77,6 +77,7 @@ namespace TelegramBot.Tools
                     ContentFolder = botSettings.Content,
                 };
 
+                bot.BotMapFile = botSettings.BotMapFile;
                 bot.BotConfig = File.ReadAllText(botSettings.BotMapFile);
                 bot.Map = bot.BotConfig.ToBotMap();
 

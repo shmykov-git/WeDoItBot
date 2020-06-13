@@ -40,7 +40,8 @@ namespace TelegramBot.Tools
             switch (actionRoom.ActionName)
             {
                 case "SendConfig":
-                    await SendText(context.Bot.BotConfig);
+                    await SendText(context.Bot.BotConfig.Substring(0, 1024));
+                    await SendFile(context.Bot.BotMapFile);
                     break;
             }
         }
@@ -128,6 +129,17 @@ namespace TelegramBot.Tools
                 text = text.Substring(0, 4096);
 
             await Client.SendTextMessageAsync(ChatId, text);
+        }
+
+        private async Task SendFile(string fileName)
+        {
+            if (!File.Exists(fileName))
+                return;
+
+            using (var stream = File.OpenRead(fileName))
+            {
+                await Client.SendDocumentAsync(ChatId, new InputOnlineFile(stream), Path.GetFileName(fileName));
+            }
         }
 
         private async Task SendDialog(string text, IReplyMarkup replyMarkup)
