@@ -21,7 +21,7 @@ namespace TelegramBot.Tools
         private readonly ContentManager contentManager;
         private readonly TelegramUserContext context;
 
-        private TelegramBotClient Bot => context.Bot;
+        private TelegramBotClient Client => context.Bot.Client;
         private long ChatId => context.Message.Chat.Id;
 
         public TelegramBotMapVisitor(ILog log, ContentManager contentManager, TelegramUserContext context)
@@ -38,7 +38,7 @@ namespace TelegramBot.Tools
             switch (actionRoom.ActionName)
             {
                 case "SendConfig":
-                    await SendText(context.BotConfig);
+                    await SendText(context.Bot.BotConfig);
                     break;
             }
         }
@@ -121,17 +121,17 @@ namespace TelegramBot.Tools
             if (text.IsNullOrEmpty())
                 return;
 
-            await Bot.SendTextMessageAsync(ChatId, text);
+            await Client.SendTextMessageAsync(ChatId, text);
         }
 
         private async Task SendDialog(string text, IReplyMarkup replyMarkup)
         {
-            await Bot.SendTextMessageAsync(ChatId, text, replyMarkup: replyMarkup);
+            await Client.SendTextMessageAsync(ChatId, text, replyMarkup: replyMarkup);
         }
 
         private async Task SendPic(string pic)
         {
-            if (!await contentManager.Apply(pic, async stream => await Bot.SendPhotoAsync(ChatId, new InputOnlineFile(stream))))
+            if (!await contentManager.Apply(pic, async stream => await Client.SendPhotoAsync(ChatId, new InputOnlineFile(stream))))
                 log.Warn($"No pic {pic}");
         }
 

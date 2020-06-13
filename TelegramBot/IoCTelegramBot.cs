@@ -1,6 +1,8 @@
 ﻿using System;
 using Suit;
 using Suit.Logs;
+using Telegram.Bot.Types;
+using TelegramBot.Model;
 using TelegramBot.Services;
 using TelegramBot.Tools;
 using Unity;
@@ -18,12 +20,13 @@ namespace TelegramBot
             container.RegisterSingleton<TelegramBotManager>();
             container.RegisterSingleton<TelegramBotService>();
             
-            container.RegisterFactory<Func<TelegramUserContext>>(c => (Func<TelegramUserContext>) (() =>
+            container.RegisterFactory<Func<SingleBot, TelegramUserContext>>(c => (Func<SingleBot, TelegramUserContext>) (bot =>
             {
-                var context = new TelegramUserContext(IoC.Get<ILog>());
+                var context = new TelegramUserContext(IoC.Get<ILog>())
+                {
+                    Bot = bot,
+                };
 
-                context.Bot = IoC.Get<TelegramBotManager>().Bot;
-                context.BotConfig = IoC.Get<TelegramBotManager>().BotConfig;
                 context.Visitor = new TelegramBotMapVisitor(IoC.Get<ILog>(), IoC.Get<ContentManager>(), context);
                 context.Maestro = new TelegramBotMaestro(IoC.Get<ILog>(), context);
 

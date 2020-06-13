@@ -3,6 +3,7 @@ using Bot.Model;
 using Suit.Logs;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using TelegramBot.Model;
 
 namespace TelegramBot.Tools
 {
@@ -10,13 +11,11 @@ namespace TelegramBot.Tools
     {
         private readonly ILog log;
 
-        public TelegramBotClient Bot { get; set; }
-        public string BotConfig { get; set; }
         public IBotMapVisitor Visitor { get; set; }
         public IBotMaestro Maestro { get; set; }
 
         public string UserKey { get; set; }
-        public BotMap Map { get; set; }
+        public SingleBot Bot { get; set; }
         public Message Message { get; set; }
         public CallbackQuery CallbackQuery { get; set; }
         public ConcurrentDictionary<string, TelegramUserContext> Contexts { get; set; }

@@ -1,11 +1,10 @@
 using System;
+using TelegramBot.Model;
 
 namespace TelegramBot.Tools
 {
     interface IBotManagerSettings
     {
-        string BotMapFile { get; }
-        Uri ProxyHost { get; }
-        string BotToken { get; }
+        SingleBotSettings[] Bots { get; }
     }
 }

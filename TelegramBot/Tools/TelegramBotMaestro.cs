@@ -19,7 +19,7 @@ namespace TelegramBot.Tools
         private bool IsCommand(string message) => message.StartsWith("/");
         private string GetKey(string message) => message.Substring(1).Split('@').First();
 
-        private Room GetRoom(string key) => context.Map.Rooms.FirstOrDefault(r => r.Key == key);
+        private Room GetRoom(string key) => context.Bot.Map.Rooms.FirstOrDefault(r => r.Key == key);
         private bool IsWaitingForAnswer(Message message) => context.State.StateType == StateType.WaitingForAnswer;
 
         public TelegramBotMaestro(ILog log, TelegramUserContext context)
@@ -36,7 +36,7 @@ namespace TelegramBot.Tools
         public async void Command(string command)
         {
             log.Debug($"#Command: {command}");
-            var room = context.Map.FindRoom(command);
+            var room = context.Bot.Map.FindRoom(command);
 
             context.State.CurrentRoom = room;
             context.State.StateType = StateType.None;

@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Net;
 using Bot.Extensions;
 using Bot.Model;
 using Suit.Aspects;
+using Suit.Extensions;
 using Suit.Logs;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using TelegramBot.Model;
 using File = System.IO.File;
 
 namespace TelegramBot.Tools
@@ -16,47 +19,44 @@ namespace TelegramBot.Tools
     {
         private readonly ILog log;
         private readonly IBotManagerSettings settings;
-        private readonly Func<TelegramUserContext> createUserContextFn;
-        private BotMap botMap;
+        private readonly Func<SingleBot, TelegramUserContext> createUserContextFn;
 
-        public TelegramBotClient Bot { get; private set; }
-        public string BotConfig { get; private set; }
+        public SingleBot[] Bots { get; set; }
 
         private ConcurrentDictionary<string, TelegramUserContext> contexts = new ConcurrentDictionary<string, TelegramUserContext>();
-        private string GetUserKey(Message message) => message.Chat.Username;
+        private string GetUserKey(SingleBot bot, Message message) => $"{message.Chat.Username}{bot.Name}";
 
-        public TelegramBotManager(ILog log, IBotManagerSettings settings, Func<TelegramUserContext> createUserContextFn)
+        public TelegramBotManager(ILog log, IBotManagerSettings settings, Func<SingleBot, TelegramUserContext> createUserContextFn)
         {
             this.log = log;
             this.settings = settings;
             this.createUserContextFn = createUserContextFn;
-
-            BotConfig = File.ReadAllText(settings.BotMapFile);
-            botMap = BotConfig.ToBotMap();
         }
 
-        private TelegramUserContext GetContext(CallbackQuery query)
+        private TelegramUserContext GetContext(SingleBot bot, CallbackQuery query)
         {
-            var context = GetContext(query.Message);
+            var context = GetContext(bot, query.Message);
             context.CallbackQuery = query;
 
             return context;
         }
 
-        private TelegramUserContext GetContext(Message message)
+        private TelegramUserContext GetContext(SingleBot bot, Message message)
         {
-            return contexts.AddOrUpdate(GetUserKey(message),
+            var contextKey = GetUserKey(bot, message);
+
+            return contexts.AddOrUpdate(contextKey,
                 userKey =>
                 {
-                    var newContext = createUserContextFn();
+                    var newContext = createUserContextFn(bot);
                     newContext.UserKey = userKey;
                     newContext.Message = message;
-                    newContext.Map = botMap;
                     newContext.Contexts = contexts;
                     newContext.State = new State();
 
-                    return newContext;
+                    log.Info($"UserContext {contextKey} created");
 
+                    return newContext;
                 },
                 (k, oldContext) =>
                 {
@@ -69,17 +69,22 @@ namespace TelegramBot.Tools
 
         public void Start()
         {
-            try
+            Bots = settings.Bots.Select(botSettings =>
             {
-                var proxy = new WebProxy(settings.ProxyHost);
-                Bot = new TelegramBotClient(settings.BotToken, proxy);
+                var bot = new SingleBot() {Name = botSettings.Name};
 
-                Bot.OnMessage += (o, a) =>
+                bot.BotConfig = File.ReadAllText(botSettings.BotMapFile);
+                bot.Map = bot.BotConfig.ToBotMap();
+
+                var proxy = new WebProxy(botSettings.ProxyHost);
+                bot.Client = new TelegramBotClient(botSettings.BotToken, proxy);
+
+                bot.Client.OnMessage += (o, a) =>
                 {
                     try
                     {
                         if (IsActual(a.Message))
-                            GetContext(a.Message).Maestro.Type(a.Message.Text);
+                            GetContext(bot, a.Message).Maestro.Type(a.Message.Text);
                     }
                     catch (Exception e)
                     {
@@ -87,12 +92,12 @@ namespace TelegramBot.Tools
                     }
                 };
 
-                Bot.OnCallbackQuery += (o, a) =>
+                bot.Client.OnCallbackQuery += (o, a) =>
                 {
                     try
                     {
                         if (IsActual(a.CallbackQuery.Message))
-                            GetContext(a.CallbackQuery).Maestro.Command(a.CallbackQuery.Data);
+                            GetContext(bot, a.CallbackQuery).Maestro.Command(a.CallbackQuery.Data);
                     }
                     catch (Exception e)
                     {
@@ -100,23 +105,20 @@ namespace TelegramBot.Tools
                     }
                 };
 
-                Bot.OnReceiveGeneralError += (o, a) => log.Exception(a.Exception);
-                Bot.OnReceiveError += (o, a) => log.Exception(a.ApiRequestException);
+                bot.Client.OnReceiveGeneralError += (o, a) => log.Exception(a.Exception);
+                bot.Client.OnReceiveError += (o, a) => log.Exception(a.ApiRequestException);
 
-                Bot.StartReceiving();
-                log.Info($"Start listening");
-            }
-            catch (Exception e)
-            {
-                log.Exception(e);
+                bot.Client.StartReceiving();
 
-                throw;
-            }
+                log.Info($"Start listening bot {botSettings.Name}");
+
+                return bot;
+            }).ToArray();
         }
 
         public void Stop()
         {
-            Bot.StopReceiving();
+            Bots.ForEach(b => b.Client.StopReceiving());
         }
 
         private bool IsActual(Message message) => message.Date.AddMinutes(10) > DateTime.UtcNow;

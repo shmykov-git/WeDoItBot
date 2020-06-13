@@ -16,9 +16,10 @@ namespace Bot.Test
         [Test]
         public void BotTest()
         {
+            var settings = IoC.Get<BotTestSettings>();
             var maestro = IoC.Get<TestBotMaestro>();
 
-            maestro.Map = File.ReadAllText("bot.json").ToBotMap();
+            maestro.Map = File.ReadAllText(settings.TestBotFileName).ToBotMap();
 
             maestro.Actions = new[]
             {
