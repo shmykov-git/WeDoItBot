@@ -22,14 +22,11 @@ namespace Bot.Test
 
             maestro.Map = File.ReadAllText(settings.TestBotFileName).ToBotMap();
 
-            maestro.Actions = new[]
-            {
-                "/start",
-                "/noTicket",
-                "/service",
-                "/konf",
-                "Что дальше?"
-            };
+            maestro.Actions = maestro.Map.Rooms.Select(r => r.Key)
+                .Concat(maestro.Map.Rooms.SelectMany(r => r.GoList))
+                .Distinct()
+                .Select(key => $"/{key}")
+                .ToArray();
 
             maestro.Start();
         }
@@ -42,8 +39,10 @@ namespace Bot.Test
 
             maestro.Map = File.ReadAllText(settings.TestBotHowToFileName).ToBotMap();
 
-            maestro.Actions = maestro.Map.Rooms.Select(r => $"/{r.Id}")
-                .Concat(maestro.Map.Rooms.Where(r => r.AutoGo != null).Select(r => r.AutoGo))
+            maestro.Actions = maestro.Map.Rooms.Select(r => r.Key)
+                .Concat(maestro.Map.Rooms.SelectMany(r => r.GoList))
+                .Distinct()
+                .Select(key => $"/{key}")
                 .ToArray();
 
             maestro.Start();

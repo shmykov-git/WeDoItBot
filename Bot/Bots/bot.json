@@ -43,11 +43,11 @@
       "Items": [
         {
           "Button": "Продажа продукта",
-          "Go": "themeProduct"
+          "Go": "underconstruction"
         },
         {
           "Button": "Дизайн продукта",
-          "Go": "themeProductDisign"
+          "Go": "underconstruction"
         }
       ]
     },

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Bot.Model.Artifacts;
 
 namespace Bot.Model.RoomPlaces
@@ -8,6 +10,8 @@ namespace Bot.Model.RoomPlaces
         public string Caption { get; set; }
         public string Go { get; set; }
         public string Name { get; set; }
+
+        public override IEnumerable<string> GoList => new[] { Go }.Concat(base.GoList);
 
         public override async Task Visit(IBotMapVisitor visitor)
         {

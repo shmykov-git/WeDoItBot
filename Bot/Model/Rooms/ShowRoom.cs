@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Bot.Model.RoomPlaces;
 using Newtonsoft.Json;
 
@@ -10,6 +12,9 @@ namespace Bot.Model.Rooms
 
         [JsonIgnore]
         public EnterPlace EnterPlace { get; set; }
+
+        public override IEnumerable<string> GoList =>
+            (Places?.SelectMany(p => p.GoList) ?? new string[0]).Concat(base.GoList);
 
         public override async Task Visit(IBotMapVisitor visitor)
         {

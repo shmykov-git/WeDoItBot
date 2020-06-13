@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bot.Model.RoomPlaces;
 
@@ -8,6 +9,8 @@ namespace Bot.Model.Rooms.Simple
     {
         public string List { get; set; }
         public ListItem[] Items { get; set; }
+
+        public override IEnumerable<string> GoList => (Items?.Select(b => b.Go) ?? new string[0]).Concat(base.GoList);
 
         public override async Task Visit(IBotMapVisitor visitor)
         {

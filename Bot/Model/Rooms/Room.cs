@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Bot.Model.Artifacts;
 using Suit.Extensions;
 
@@ -17,6 +19,8 @@ namespace Bot.Model.Rooms
         }
 
         public string AutoGo { get; set; }
+
+        public virtual IEnumerable<string> GoList => new[] {AutoGo}.Where(g => g != null);
 
         public virtual async Task Visit(IBotMapVisitor visitor)
         {
