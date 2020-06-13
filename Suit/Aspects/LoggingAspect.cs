@@ -9,7 +9,6 @@ namespace Suit.Aspects
 {
 	[Aspect(Scope.Global)]
 	[Injection(typeof(LoggingAspect))]
-    //todo: doesn't work for .net core
 	public class LoggingAspect : Attribute
 	{
 		private readonly LoggingRule loggingRule;

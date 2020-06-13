@@ -3,8 +3,6 @@ using Bot.Model.RoomPlaces;
 
 namespace Bot.Model.Rooms.Simple
 {
-    //public class MenuRoom: 
-
     public class SayRoom : PicRoom
     {
         public string Say { get; set; }

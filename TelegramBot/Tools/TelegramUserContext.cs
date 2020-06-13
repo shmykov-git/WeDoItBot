@@ -11,6 +11,7 @@ namespace TelegramBot.Tools
         private readonly ILog log;
 
         public TelegramBotClient Bot { get; set; }
+        public string BotConfig { get; set; }
         public IBotMapVisitor Visitor { get; set; }
         public IBotMaestro Maestro { get; set; }
 

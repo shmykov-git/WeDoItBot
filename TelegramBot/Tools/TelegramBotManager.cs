@@ -11,7 +11,7 @@ using File = System.IO.File;
 
 namespace TelegramBot.Tools
 {
-    [LoggingAspect(LoggingRule.Full)]
+    [LoggingAspect(LoggingRule.Stabilize)]
     class TelegramBotManager
     {
         private readonly ILog log;
@@ -20,6 +20,7 @@ namespace TelegramBot.Tools
         private BotMap botMap;
 
         public TelegramBotClient Bot { get; private set; }
+        public string BotConfig { get; private set; }
 
         private ConcurrentDictionary<string, TelegramUserContext> contexts = new ConcurrentDictionary<string, TelegramUserContext>();
         private string GetUserKey(Message message) => message.Chat.Username;
@@ -30,7 +31,8 @@ namespace TelegramBot.Tools
             this.settings = settings;
             this.createUserContextFn = createUserContextFn;
 
-            botMap = File.ReadAllText(settings.BotMapFile).ToBotMap();
+            BotConfig = File.ReadAllText(settings.BotMapFile);
+            botMap = BotConfig.ToBotMap();
         }
 
         private TelegramUserContext GetContext(CallbackQuery query)
@@ -67,46 +69,56 @@ namespace TelegramBot.Tools
 
         public void Start()
         {
-            var proxy = new WebProxy(settings.ProxyHost);
-            Bot = new TelegramBotClient(settings.BotToken, proxy);
-            
-            Bot.OnMessage += (o, a) =>
+            try
             {
-                try
-                {
-                    if (IsActual(a.Message))
-                        GetContext(a.Message).Maestro.Type(a.Message.Text);
-                }
-                catch (Exception e)
-                {
-                    log.Exception(e);
-                }
-            };
+                var proxy = new WebProxy(settings.ProxyHost);
+                Bot = new TelegramBotClient(settings.BotToken, proxy);
 
-            Bot.OnCallbackQuery += (o, a) =>
+                Bot.OnMessage += (o, a) =>
+                {
+                    try
+                    {
+                        if (IsActual(a.Message))
+                            GetContext(a.Message).Maestro.Type(a.Message.Text);
+                    }
+                    catch (Exception e)
+                    {
+                        log.Exception(e);
+                    }
+                };
+
+                Bot.OnCallbackQuery += (o, a) =>
+                {
+                    try
+                    {
+                        if (IsActual(a.CallbackQuery.Message))
+                            GetContext(a.CallbackQuery).Maestro.Command(a.CallbackQuery.Data);
+                    }
+                    catch (Exception e)
+                    {
+                        log.Exception(e);
+                    }
+                };
+
+                Bot.OnReceiveGeneralError += (o, a) => log.Exception(a.Exception);
+                Bot.OnReceiveError += (o, a) => log.Exception(a.ApiRequestException);
+
+                Bot.StartReceiving();
+                log.Info($"Start listening");
+            }
+            catch (Exception e)
             {
-                try
-                {
-                    if (IsActual(a.CallbackQuery.Message))
-                        GetContext(a.CallbackQuery).Maestro.Command(a.CallbackQuery.Data);
-                }
-                catch (Exception e)
-                {
-                    log.Exception(e);
-                }
-            };
+                log.Exception(e);
 
-            Bot.OnReceiveGeneralError += (o, a) => log.Exception(a.Exception);
-            Bot.OnReceiveError += (o, a) => log.Exception(a.ApiRequestException);
+                throw;
+            }
+        }
 
-            Bot.StartReceiving();
-            log.Info($"Start listening");
-
-            Console.ReadLine();
+        public void Stop()
+        {
             Bot.StopReceiving();
         }
 
         private bool IsActual(Message message) => message.Date.AddMinutes(10) > DateTime.UtcNow;
-
     }
 }

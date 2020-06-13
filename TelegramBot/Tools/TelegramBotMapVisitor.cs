@@ -14,7 +14,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace TelegramBot.Tools
 {
-    [LoggingAspect(LoggingRule.Input | LoggingRule.Performance)]
+    [LoggingAspect(LoggingRule.Input)]
     class TelegramBotMapVisitor: IBotMapVisitor
     {
         private readonly ILog log;
@@ -31,11 +31,16 @@ namespace TelegramBot.Tools
             this.context = context;
         }
 
-        public Task VisitActionRoom(ActionRoom actionRoom)
+        public async Task VisitActionRoom(ActionRoom actionRoom)
         {
             log.Debug($"VisitActionRoom");
 
-            return Task.CompletedTask;
+            switch (actionRoom.ActionName)
+            {
+                case "SendConfig":
+                    await SendText(context.BotConfig);
+                    break;
+            }
         }
 
         public Task VisitRoom(Room room)

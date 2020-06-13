@@ -24,7 +24,7 @@ namespace Bot.Test
             {
                 "/start",
                 "/noTicket",
-                "/hasTicket",
+                "/service",
                 "/konf",
                 "Что дальше?"
             };

@@ -4,22 +4,15 @@ using Bot.Model.RoomPlaces;
 
 namespace Bot.Model.Rooms.Simple
 {
-    public class AutoGoRoom : Room
+    public class AutoGoRoom : ActionRoom
     {
-        //public ListItem[] MenuItems { get; set; }
+        public string Do { get; set; }
 
-        //public override async Task Visit(IBotMapVisitor visitor)
-        //{
-        //    Places = new RoomPlace[]
-        //    {
-        //        new ButtonMenu()
-        //        {
-        //            Caption = "^_^",
-        //            Buttons = MenuItems.Select(item => new Button() {Name = item.Button, Go = item.Go}).ToArray(),
-        //        },
-        //    };
+        public override async Task Visit(IBotMapVisitor visitor)
+        {
+            ActionName = Do;
 
-        //    await base.Visit(visitor);
-        //}
+            await base.Visit(visitor);
+        }
     }
 }

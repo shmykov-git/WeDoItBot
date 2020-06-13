@@ -3,12 +3,14 @@ using System.Linq;
 using Bot.Extensions;
 using Bot.Model;
 using Bot.Model.Rooms;
+using Suit.Aspects;
 using Suit.Extensions;
 using Suit.Logs;
 using Telegram.Bot.Types;
 
 namespace TelegramBot.Tools
 {
+    [LoggingAspect(LoggingRule.Input)]
     class TelegramBotMaestro: IBotMaestro
     {
         private readonly ILog log;

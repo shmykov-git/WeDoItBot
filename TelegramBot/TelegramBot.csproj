@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject></StartupObject>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,6 +44,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspectInjector" Version="2.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.5" />
     <PackageReference Include="Telegram.Bot" Version="15.6.0" />
     <PackageReference Include="Unity" Version="5.11.7" />
   </ItemGroup>
