@@ -5,7 +5,7 @@
       "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\bot.json",
       "BotToken": "1107856285:AAHcDAuZg-BikqjCUAIb6ro8z3prriYR3sg",
       "ProxyHost": "http://201.249.190.235:3128",
-      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Content"
+      "Content": "C:\\Projects\\WeDoItBot\\TelegramBot\\Content\\"
     },
     {
       "Name": "@HowTo_123_bot",
