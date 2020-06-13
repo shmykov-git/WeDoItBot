@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Bot.Model.Artifacts;
+using Newtonsoft.Json;
 
 namespace Bot.Model.RoomPlaces
 {
@@ -11,6 +12,7 @@ namespace Bot.Model.RoomPlaces
         public string Caption { get; set; }
         public Button[] Buttons { get; set; }
 
+        [JsonIgnore]
         public override IEnumerable<string> GoList => Buttons.Select(b => b.Go).Concat(base.GoList);
 
         public override async Task Visit(IBotMapVisitor visitor)

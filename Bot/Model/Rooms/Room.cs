@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Bot.Model.Artifacts;
-using Suit.Extensions;
+using Newtonsoft.Json;
 
 namespace Bot.Model.Rooms
 {
@@ -20,6 +19,7 @@ namespace Bot.Model.Rooms
 
         public string AutoGo { get; set; }
 
+        [JsonIgnore]
         public virtual IEnumerable<string> GoList => new[] {AutoGo}.Where(g => g != null);
 
         public virtual async Task Visit(IBotMapVisitor visitor)

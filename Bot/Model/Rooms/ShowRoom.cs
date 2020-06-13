@@ -13,6 +13,7 @@ namespace Bot.Model.Rooms
         [JsonIgnore]
         public EnterPlace EnterPlace { get; set; }
 
+        [JsonIgnore]
         public override IEnumerable<string> GoList =>
             (Places?.SelectMany(p => p.GoList) ?? new string[0]).Concat(base.GoList);
 
