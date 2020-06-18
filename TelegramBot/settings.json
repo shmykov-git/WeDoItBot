@@ -2,10 +2,10 @@
   "Bots": [
     {
       "Name": "@WeDoItHakatonBot",
-      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\bot.json",
+      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\weDoIt.json",
       "BotToken": "1107856285:AAHcDAuZg-BikqjCUAIb6ro8z3prriYR3sg",
       "ProxyHost": "http://201.249.190.235:3128",
-      "Content": "C:\\Projects\\WeDoItBot\\TelegramBot\\Content\\"
+      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\WeDoIt"
     },
     {
       "Name": "@HowTo_123_bot",
@@ -18,15 +18,17 @@
   "BotTemplates": [
     {
       "Name": "@WeDoItHakatonBot",
-      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\bot.json",
+      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\weDoIt.json",
       "BotToken": "1107856285:AAHcDAuZg-BikqjCUAIb6ro8z3prriYR3sg",
-      "ProxyHost": "http://201.249.190.235:3128"
+      "ProxyHost": "http://201.249.190.235:3128",
+      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\WeDoIt"
     },
     {
       "Name": "@vasy_do_it_bot",
-      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\bot.json",
+      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\vasy.json",
       "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
-      "ProxyHost": "http://201.249.190.235:3128"
+      "ProxyHost": "http://201.249.190.235:3128",
+      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\Vasy"
     },
     {
       "Name": "@HowTo_123_bot",

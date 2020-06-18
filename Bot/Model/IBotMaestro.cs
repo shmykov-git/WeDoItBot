@@ -1,7 +1,4 @@
-﻿using Bot.Model.Artifacts;
-using Bot.Model.Rooms;
-
-namespace Bot.Model
+﻿namespace Bot.Model
 {
     public interface IBotMaestro
     {

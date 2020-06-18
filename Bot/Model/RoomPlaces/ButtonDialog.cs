@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Bot.Model.Artifacts;
 using Newtonsoft.Json;
 
 namespace Bot.Model.RoomPlaces

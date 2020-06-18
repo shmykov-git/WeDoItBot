@@ -32,8 +32,8 @@
           "Go": "enterProfile"
         },
         {
-          "Button": "Покажи конфиг",
-          "Go": "showConfig"
+          "Button": "Карта бота",
+          "Go": "botmap"
         }
       ]
     },
@@ -94,7 +94,7 @@
       "AutoGo": "service"
     },
     {
-      "Id": "showConfig",
+      "Id": "botmap",
       "Do": "SendConfig",
       "AutoGo": "service"
     }

@@ -1,8 +1,5 @@
-using System;
-using System.Linq;
 using Bot.Extensions;
 using Bot.Model;
-using Bot.Model.Artifacts;
 using Suit.Extensions;
 using Suit.Logs;
 

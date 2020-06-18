@@ -15,12 +15,12 @@ namespace Bot.Test
         }
 
         [Test]
-        public void BotTest()
+        public void WeDoItTest()
         {
             var settings = IoC.Get<BotTestSettings>();
             var maestro = IoC.Get<TestBotMaestro>();
 
-            maestro.Map = File.ReadAllText(settings.TestBotFileName).ToBotMap();
+            maestro.Map = File.ReadAllText(settings.TestWeDoItBotFileName).ToBotMap();
 
             maestro.Actions = maestro.Map.Rooms.Select(r => r.Key)
                 .Concat(maestro.Map.Rooms.SelectMany(r => r.GoList))
@@ -37,7 +37,7 @@ namespace Bot.Test
             var settings = IoC.Get<BotTestSettings>();
             var maestro = IoC.Get<TestBotMaestro>();
 
-            maestro.Map = File.ReadAllText(settings.TestBotHowToFileName).ToBotMap();
+            maestro.Map = File.ReadAllText(settings.TestHowToBotFileName).ToBotMap();
 
             maestro.Actions = maestro.Map.Rooms.Select(r => r.Key)
                 .Concat(maestro.Map.Rooms.SelectMany(r => r.GoList))

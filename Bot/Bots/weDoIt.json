@@ -1,0 +1,102 @@
+﻿{
+  "Rooms": [
+    {
+      "Id": "start",
+      "AutoGo": "emebot"
+    },
+    {
+      "Id": "emebot",
+      "Ask": "Привет, я бот - твой помошник для конференции Цифровой прорыв. Ты уже купил билет?",
+      "YesGo": "service",
+      "NoGo": "noTicket"
+    },
+    {
+      "Id": "noTicket",
+      "Say": "Наша конференция платная, пожалуйста купи билет в нашей электронной кассе",
+      "Go": "service"
+    },
+    {
+      "Id": "service",
+      "List": "Конференция Цифровой прорыв. Что вас интересует?",
+      "Items": [
+        {
+          "Button": "Посетить конференцию",
+          "Go": "konf"
+        },
+        {
+          "Button": "Сервис поиска партнеров",
+          "Go": "roadmap"
+        },
+        {
+          "Button": "Заполнить профиль",
+          "Go": "enterProfile"
+        },
+        {
+          "Button": "Карта бота",
+          "Go": "botmap"
+        }
+      ]
+    },
+    {
+      "Id": "konf",
+      "List": "На конференции представлены ряд тем, вы можете получить по каждой полную информацию",
+      "Items": [
+        {
+          "Button": "Продажа продукта",
+          "Go": "underconstruction"
+        },
+        {
+          "Button": "Дизайн продукта",
+          "Go": "underconstruction"
+        }
+      ]
+    },
+    {
+      "Id": "roadmap",
+      "List": "Кого будем искать?",
+      "Items": [
+        {
+          "Button": "Продакт-менеджер",
+          "Go": "underconstruction"
+        },
+        {
+          "Button": "Дизайнер",
+          "Go": "underconstruction"
+        },
+        {
+          "Button": "Программист",
+          "Go": "underconstruction"
+        }
+      ]
+    },
+    {
+      "Id": "underconstruction",
+      "Say": "Это пока не готово",
+      "Go": "start"
+    },
+    {
+      "Id": "enterProfile",
+      "Enter": "Ввод профиля",
+      "Items": [
+        {
+          "Key": "Name",
+          "Name": "Как вас зовут?"
+        },
+        {
+          "Key": "Age",
+          "Name": "Сколько вам лет?"
+        },
+        {
+          "Key": "Army",
+          "Name": "Служили ли вы в армии?"
+        }
+      ],
+      "AutoGo": "service"
+    },
+    {
+      "Id": "botmap",
+      "Do": "SendConfig",
+      "AutoGo": "service"
+    }
+  ]
+}

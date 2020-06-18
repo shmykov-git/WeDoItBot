@@ -2,7 +2,7 @@ namespace Bot.Test
 {
     class BotTestSettings
     {
-        public string TestBotFileName => @"C:\Projects\WeDoItBot\Bot\Bots\bot.json";
-        public string TestBotHowToFileName => @"C:\Projects\WeDoItBot\Bot\Bots\howTo.json";
+        public string TestWeDoItBotFileName => @"C:\Projects\WeDoItBot\Bot\Bots\weDoIt.json";
+        public string TestHowToBotFileName => @"C:\Projects\WeDoItBot\Bot\Bots\howTo.json";
     }
 }
