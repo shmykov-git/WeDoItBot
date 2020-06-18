@@ -4,14 +4,12 @@
       "Name": "@WeDoItHakatonBot",
       "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\weDoIt.json",
       "BotToken": "1107856285:AAHcDAuZg-BikqjCUAIb6ro8z3prriYR3sg",
-      "ProxyHost": "http://201.249.190.235:3128",
       "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\WeDoIt"
     },
     {
       "Name": "@HowTo_123_bot",
       "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\howTo.json",
       "BotToken": "1246935312:AAGTr5w1YLrvTnu5Zt2uy4p1wFYnaKnupWE",
-      "ProxyHost": "http://201.249.190.235:3128",
       "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\HowTo"
     }
   ],
@@ -20,21 +18,18 @@
       "Name": "@WeDoItHakatonBot",
       "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\weDoIt.json",
       "BotToken": "1107856285:AAHcDAuZg-BikqjCUAIb6ro8z3prriYR3sg",
-      "ProxyHost": "http://201.249.190.235:3128",
       "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\WeDoIt"
     },
     {
       "Name": "@vasy_do_it_bot",
       "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\vasy.json",
       "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
-      "ProxyHost": "http://201.249.190.235:3128",
       "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\Vasy"
     },
     {
       "Name": "@HowTo_123_bot",
       "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\howTo.json",
       "BotToken": "1246935312:AAGTr5w1YLrvTnu5Zt2uy4p1wFYnaKnupWE",
-      "ProxyHost": "http://201.249.190.235:3128",
       "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\HowTo"
     }
   ]

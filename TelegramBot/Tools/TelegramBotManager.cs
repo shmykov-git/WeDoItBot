@@ -81,8 +81,15 @@ namespace TelegramBot.Tools
                 bot.BotConfig = File.ReadAllText(botSettings.BotMapFile);
                 bot.Map = bot.BotConfig.ToBotMap();
 
-                var proxy = new WebProxy(botSettings.ProxyHost);
-                bot.Client = new TelegramBotClient(botSettings.BotToken, proxy);
+                if (botSettings.ProxyHost.IsNullOrEmpty())
+                {
+                    bot.Client = new TelegramBotClient(botSettings.BotToken);
+                }
+                else
+                {
+                    var proxy = new WebProxy(botSettings.ProxyHost);
+                    bot.Client = new TelegramBotClient(botSettings.BotToken, proxy);
+                }
 
                 bot.Client.OnMessage += (o, a) =>
                 {
