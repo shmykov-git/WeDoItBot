@@ -2,10 +2,9 @@
   "Bots": [
     {
       "Name": "@vasy_do_it_bot",
-      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\vasy.json",
+      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\breeze.json",
       "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
-      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\Vasy",
-      "UserPicRefs": true 
+      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\Breeze"
     }
   ],
   "BotTemplates": [
@@ -17,9 +16,16 @@
     },
     {
       "Name": "@vasy_do_it_bot",
+      "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\breeze.json",
+      "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
+      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\Breeze"
+    },
+    {
+      "Name": "@vasy_do_it_bot",
       "BotMapFile": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\vasy.json",
       "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
-      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\Vasy"
+      "Content": "C:\\Projects\\WeDoItBot\\Bot\\Bots\\Vasy",
+      "UsePicRefs": true
     },
     {
       "Name": "@HowTo_123_bot",

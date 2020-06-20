@@ -7,6 +7,6 @@ namespace TelegramBot.Model
         public string ProxyHost { get; set; }
         public string BotToken { get; set; }
         public string Content { get; set; }
-        public bool UserPicRefs { get; set; }
+        public bool UsePicRefs { get; set; }
     }
 }

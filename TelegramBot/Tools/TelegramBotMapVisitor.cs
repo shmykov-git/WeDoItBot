@@ -155,7 +155,7 @@ namespace TelegramBot.Tools
 
         private async Task SendPic(string pic)
         {
-            if (context.Bot.Settings.UserPicRefs)
+            if (context.Bot.Settings.UsePicRefs)
             {
                 if (!await contentManager.ApplyRef(pic, async picRef => await Client.SendPhotoAsync(ChatId, new InputOnlineFile(picRef))))
                     log.Warn($"No pic {pic}");

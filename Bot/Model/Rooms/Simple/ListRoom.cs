@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Bot.Model.RoomPlaces;
 using Newtonsoft.Json;
 
@@ -11,10 +10,7 @@ namespace Bot.Model.Rooms.Simple
         public string List { get; set; }
         public ListItem[] Items { get; set; }
 
-        [JsonIgnore]
-        public override IEnumerable<string> GoList => (Items?.Select(b => b.Go) ?? new string[0]).Concat(base.GoList);
-
-        public override async Task Visit(IBotMapVisitor visitor)
+        protected override void Simplify()
         {
             Places = new RoomPlace[]
             {
@@ -24,8 +20,9 @@ namespace Bot.Model.Rooms.Simple
                     Buttons = Items.Select(item => new Button() {Name = item.Button, Go = item.Go}).ToArray(),
                 },
             };
-
-            await base.Visit(visitor);
         }
+
+        [JsonIgnore]
+        public override IEnumerable<string> GoList => (Items?.Select(b => b.Go) ?? new string[0]).Concat(base.GoList);
     }
 }

@@ -12,10 +12,7 @@ namespace Bot.Model.Rooms.Simple
         public string YesGo { get; set; }
         public string NoGo { get; set; }
 
-        [JsonIgnore]
-        public override IEnumerable<string> GoList => new[] { YesGo, NoGo }.Concat(base.GoList);
-
-        public override async Task Visit(IBotMapVisitor visitor)
+        protected override void Simplify()
         {
             Places = new RoomPlace[]
             {
@@ -30,8 +27,9 @@ namespace Bot.Model.Rooms.Simple
                     ColumnsCount = 2
                 },
             };
-
-            await base.Visit(visitor);
         }
+
+        [JsonIgnore]
+        public override IEnumerable<string> GoList => new[] { YesGo, NoGo }.Concat(base.GoList);
     }
 }

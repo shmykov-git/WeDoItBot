@@ -51,7 +51,7 @@ namespace Bot.Test
 
         public Task VisitButtonDialog(ButtonDialog buttonDialog)
         {
-            log.Debug($"???{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
+            log.Debug($"{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
             buttonDialog.Buttons.ForEach(async b => await VisitButton(b));
 
             return Task.CompletedTask;
@@ -59,7 +59,7 @@ namespace Bot.Test
 
         public Task VisitButtonMenu(ButtonMenu buttonDialog)
         {
-            log.Debug($"???{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
+            log.Debug($"{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
             log.Debug("========================");
             buttonDialog.Buttons.ForEach(async b => await VisitButton(b));
 

@@ -15,8 +15,12 @@ namespace Bot.Model.Rooms
 
         public string Caption { get; set; }
 
+        protected virtual void Simplify() { }
+
         public override async Task Visit(IBotMapVisitor visitor)
         {
+            Simplify();
+
             if (EnterPlace == null)
                 await visitor.VisitPicRoom(this);
 

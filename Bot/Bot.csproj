@@ -6,11 +6,15 @@
 
   <ItemGroup>
     <None Remove="Bots\howTo.json" />
+    <None Remove="Bots\HowTo\breeze.json" />
     <None Remove="Bots\vasy.json" />
     <None Remove="Bots\WeDoIt.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Bots\breeze.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Bots\weDoIt.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

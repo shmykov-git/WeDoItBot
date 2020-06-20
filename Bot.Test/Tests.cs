@@ -20,7 +20,7 @@ namespace Bot.Test
             var settings = IoC.Get<BotTestSettings>();
             var maestro = IoC.Get<TestBotMaestro>();
 
-            maestro.Map = File.ReadAllText(settings.TestWeDoItBotFileName).ToBotMap();
+            maestro.Map = File.ReadAllText(settings.WeDoIt).ToBotMap();
 
             maestro.Actions = maestro.Map.Rooms.Select(r => r.Key)
                 .Concat(maestro.Map.Rooms.SelectMany(r => r.GoList))
@@ -37,7 +37,24 @@ namespace Bot.Test
             var settings = IoC.Get<BotTestSettings>();
             var maestro = IoC.Get<TestBotMaestro>();
 
-            maestro.Map = File.ReadAllText(settings.TestHowToBotFileName).ToBotMap();
+            maestro.Map = File.ReadAllText(settings.HowTo).ToBotMap();
+
+            maestro.Actions = maestro.Map.Rooms.Select(r => r.Key)
+                .Concat(maestro.Map.Rooms.SelectMany(r => r.GoList))
+                .Distinct()
+                .Select(key => $"/{key}")
+                .ToArray();
+
+            maestro.Start();
+        }
+
+        [Test]
+        public void BreezeTest()
+        {
+            var settings = IoC.Get<BotTestSettings>();
+            var maestro = IoC.Get<TestBotMaestro>();
+
+            maestro.Map = File.ReadAllText(settings.Breeze).ToBotMap();
 
             maestro.Actions = maestro.Map.Rooms.Select(r => r.Key)
                 .Concat(maestro.Map.Rooms.SelectMany(r => r.GoList))
