@@ -77,6 +77,7 @@ namespace TelegramBot.Tools
                     ContentFolder = botSettings.Content,
                 };
 
+                bot.Settings = botSettings;
                 bot.BotMapFile = botSettings.BotMapFile;
                 bot.BotConfig = File.ReadAllText(botSettings.BotMapFile);
                 bot.Map = bot.BotConfig.ToBotMap();
@@ -133,6 +134,6 @@ namespace TelegramBot.Tools
             Bots.ForEach(b => b.Client.StopReceiving());
         }
 
-        private bool IsActual(Message message) => message.Date.AddMinutes(10) > DateTime.UtcNow;
+        private bool IsActual(Message message) => true; //message.Date.AddMinutes(10) > DateTime.UtcNow;
     }
 }

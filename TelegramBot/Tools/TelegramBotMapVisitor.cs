@@ -43,6 +43,12 @@ namespace TelegramBot.Tools
                     await SendText(context.Bot.BotConfig.Substring(0, 1024));
                     await SendFile(context.Bot.BotMapFile);
                     break;
+
+                default:
+                    //TODO: api integration POST(https://anyapi.com/api/{ActionName}, BODY = ActionArgument)
+                    //TODO: process and show result
+                    //TODO: move it to separate dll for indepandant usage
+                    break;
             }
         }
 
@@ -149,8 +155,16 @@ namespace TelegramBot.Tools
 
         private async Task SendPic(string pic)
         {
-            if (!await contentManager.Apply(pic, async stream => await Client.SendPhotoAsync(ChatId, new InputOnlineFile(stream))))
-                log.Warn($"No pic {pic}");
+            if (context.Bot.Settings.UserPicRefs)
+            {
+                if (!await contentManager.ApplyRef(pic, async picRef => await Client.SendPhotoAsync(ChatId, new InputOnlineFile(picRef))))
+                    log.Warn($"No pic {pic}");
+            }
+            else
+            {
+                if (!await contentManager.ApplyImgData(pic, async stream => await Client.SendPhotoAsync(ChatId, new InputOnlineFile(stream))))
+                    log.Warn($"No pic {pic}");
+            }
         }
 
     }
