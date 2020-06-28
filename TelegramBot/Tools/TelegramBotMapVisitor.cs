@@ -44,7 +44,7 @@ namespace TelegramBot.Tools
             switch (actionRoom.ActionName)
             {
                 case "SendConfig":
-                    await SendText(context.Bot.BotConfig.Substring(0, 1024));
+                    await SendText(context.Bot.BotConfig.Cut(1024));
                     await SendFile(context.Bot.BotMapFile);
                     return true;
             }

@@ -40,7 +40,7 @@ namespace TelegramBot.Tools
             context.State.CurrentRoom = room;
             context.State.StateType = StateType.None;
 
-            await room.Visit(context.Visitor);
+            await room.Visit(context.Visitor); 
 
             if (room is ShowRoom showRoom)
             {
