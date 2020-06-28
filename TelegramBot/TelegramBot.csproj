@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>shmykov.dev.TelegramBot</PackageId>
+    <Authors>Alexey Shmykov</Authors>
+    <Company>Alexey Shmykov</Company>
+    <Copyright>Alexey Shmykov</Copyright>
+    <Description>Don't spend time to write telegram bot, write bot config, then write your business depends integration actions</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

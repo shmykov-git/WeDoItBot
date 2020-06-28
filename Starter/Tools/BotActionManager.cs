@@ -19,7 +19,15 @@ namespace Starter.Tools
                     return new PicAndCaptionResult()
                     {
                         Caption = "Статистика посещения конференции",
-                        Pic = File.ReadAllBytes("Content/Gen.png")
+                        Pic = File.ReadAllBytes("Content/Gen.png"),
+                        NameGoes = new NameGo[]
+                        {
+                            ("В разработке", "underconstruction"),
+                            ("Сервис", "service"),
+                            ("Старт", "start"),
+                            ("Хорошо", "service"),
+                        },
+                        ColumnsCount = 3
                     };
 
                 default:

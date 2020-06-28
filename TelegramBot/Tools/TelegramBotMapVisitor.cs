@@ -120,6 +120,7 @@ namespace TelegramBot.Tools
         {
             var result = await actionManager.DoAction(new ActionArguments()
             {
+                BotName = context.Bot.Name,
                 ActionName = genPicRoom.ActionName,
                 ActionOption = genPicRoom.ActionArgument
             });
@@ -127,7 +128,8 @@ namespace TelegramBot.Tools
             if (result is PicAndCaptionResult picAndCaptionResult)
             {
                 await SendPic(picAndCaptionResult.Pic);
-                ((Button) genPicRoom.Places[0]).Caption = picAndCaptionResult.Caption;
+
+                genPicRoom.Generate(picAndCaptionResult);
 
                 return;
             }
