@@ -35,8 +35,6 @@ namespace TelegramBot.Tools
 
         public async Task VisitActionRoom(ActionRoom actionRoom)
         {
-            log.Debug($"VisitActionRoom");
-
             switch (actionRoom.ActionName)
             {
                 case "SendConfig":
@@ -54,22 +52,16 @@ namespace TelegramBot.Tools
 
         public Task VisitRoom(Room room)
         {
-            log.Debug($"VisitRoom");
-
             return Task.CompletedTask;
         }
 
         public Task VisitActionRoomPlace(ActionRoomPlace actionRoomPlace)
         {
-            log.Debug($"VisitActionRoomPlace");
-
             return Task.CompletedTask;
         }
 
         public async Task VisitButton(Button button)
         {
-            log.Debug($"VisitButton");
-
             await SendDialog(button.Caption, new InlineKeyboardMarkup(new[]
             {
                 new[]
@@ -81,8 +73,6 @@ namespace TelegramBot.Tools
 
         public async Task VisitButtonDialog(ButtonDialog buttonDialog)
         {
-            log.Debug($"VisitButtonDialog");
-
             await SendDialog(buttonDialog.Caption,
                 new InlineKeyboardMarkup(
                     buttonDialog.Buttons
@@ -96,8 +86,6 @@ namespace TelegramBot.Tools
 
         public async Task VisitButtonMenu(ButtonMenu buttonDialog)
         {
-            log.Debug($"VisitButtonMenu");
-
             await SendDialog(buttonDialog.Caption,
                 new ReplyKeyboardMarkup(
                     buttonDialog.Buttons
@@ -112,14 +100,11 @@ namespace TelegramBot.Tools
 
         public async Task EnterPlace(EnterPlace enterPlace)
         {
-            log.Debug($"EnterPlace");
-
             await SendText(enterPlace.Name);
         }
 
         public async Task VisitPicRoom(PicRoom picRoom)
         {
-            log.Debug($"VisitPicRoom");
             await SendText(picRoom.Name);
             await SendPic(picRoom.Pic);
             await SendText(picRoom.Caption);

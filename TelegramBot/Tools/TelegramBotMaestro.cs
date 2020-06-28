@@ -35,7 +35,6 @@ namespace TelegramBot.Tools
 
         public async void Command(string command)
         {
-            log.Debug($"#Command: {command}");
             var room = context.Bot.Map.FindRoom(command);
 
             context.State.CurrentRoom = room;
@@ -55,7 +54,6 @@ namespace TelegramBot.Tools
 
         public async void Type(string message)
         {
-            log.Debug($"#Type: {message}");
             if (IsCommand(message))
             {
                 Command(GetKey(message));
