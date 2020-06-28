@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
@@ -6,13 +5,13 @@ using Suit.Extensions;
 using TelegramBot.Model;
 using TelegramBot.Tools;
 
-namespace TelegramBot
+namespace Starter
 {
-	class TelegramBotSettings : IBotManagerSettings
+	class StarterSettings : ITelegramBotManagerSettings
     {
         private JObject settings;
 
-        public TelegramBotSettings()
+        public StarterSettings()
         {
             settings = File.ReadAllText("settings.json").FromJson<JObject>();
         }

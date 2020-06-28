@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -5,12 +6,15 @@ using Bot.Extensions;
 using Bot.Model;
 using Bot.Model.RoomPlaces;
 using Bot.Model.Rooms;
+using Bot.PublicModel;
+using Bot.PublicModel.ActionResult;
 using Suit.Aspects;
 using Suit.Extensions;
 using Suit.Logs;
 using Telegram.Bot;
 using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot.Types.ReplyMarkups;
+using TelegramBot.Model;
 
 namespace TelegramBot.Tools
 {
@@ -19,35 +23,44 @@ namespace TelegramBot.Tools
     {
         private readonly ILog log;
         private readonly ContentManager contentManager;
+        private readonly ActionManager actionManager;
         private readonly TelegramUserContext context;
 
         private TelegramBotClient Client => context.Bot.Client;
         private long ChatId => context.Message.Chat.Id;
 
-        public TelegramBotMapVisitor(ILog log, ContentManager contentManager, TelegramUserContext context)
+        public TelegramBotMapVisitor(ILog log, ContentManager contentManager, ActionManager actionManager, TelegramUserContext context)
         {
             this.log = log;
             this.contentManager = contentManager;
+            this.actionManager = actionManager;
             this.context = context;
 
             contentManager.AddContentFolder(context.Bot.ContentFolder);
         }
 
-        public async Task VisitActionRoom(ActionRoom actionRoom)
+        private async Task<bool> DoInternalAction(ActionRoom actionRoom)
         {
             switch (actionRoom.ActionName)
             {
                 case "SendConfig":
                     await SendText(context.Bot.BotConfig.Substring(0, 1024));
                     await SendFile(context.Bot.BotMapFile);
-                    break;
-
-                default:
-                    //TODO: api integration POST(https://anyapi.com/api/{ActionName}, BODY = ActionArgument)
-                    //TODO: process and show result
-                    //TODO: move it to separate dll for indepandant usage
-                    break;
+                    return true;
             }
+
+            return false;
+        }
+
+        public async Task VisitActionRoom(ActionRoom actionRoom)
+        {
+            if (actionRoom.ActionName == null)
+                return;
+
+            if (await DoInternalAction(actionRoom))
+                return;
+
+            throw new NotImplementedException(actionRoom.ToJsonStr());
         }
 
         public Task VisitRoom(Room room)
@@ -103,6 +116,25 @@ namespace TelegramBot.Tools
             await SendText(enterPlace.Name);
         }
 
+        public async Task VisitGenRoom(GenPicRoom genPicRoom)
+        {
+            var result = await actionManager.DoAction(new ActionArguments()
+            {
+                ActionName = genPicRoom.ActionName,
+                ActionOption = genPicRoom.ActionArgument
+            });
+
+            if (result is PicAndCaptionResult picAndCaptionResult)
+            {
+                await SendPic(picAndCaptionResult.Pic);
+                ((Button) genPicRoom.Places[0]).Caption = picAndCaptionResult.Caption;
+
+                return;
+            }
+
+            throw new NotImplementedException(genPicRoom.ToJsonStr());
+        }
+
         public async Task VisitPicRoom(PicRoom picRoom)
         {
             await SendText(picRoom.Name);
@@ -149,6 +181,14 @@ namespace TelegramBot.Tools
             {
                 if (!await contentManager.ApplyImgData(pic, async stream => await Client.SendPhotoAsync(ChatId, new InputOnlineFile(stream))))
                     log.Warn($"No pic {pic}");
+            }
+        }
+
+        private async Task SendPic(byte[] pic)
+        {
+            using (var fileStream = new MemoryStream(pic))
+            {
+                await Client.SendPhotoAsync(ChatId, new InputOnlineFile(fileStream));
             }
         }
 

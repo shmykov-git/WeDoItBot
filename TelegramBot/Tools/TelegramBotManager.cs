@@ -15,10 +15,10 @@ using File = System.IO.File;
 namespace TelegramBot.Tools
 {
     [LoggingAspect(LoggingRule.Stabilize)]
-    class TelegramBotManager
+    class TelegramBotManager : ITelegramBotManager
     {
         private readonly ILog log;
-        private readonly IBotManagerSettings settings;
+        private readonly ITelegramBotManagerSettings settings;
         private readonly Func<SingleBot, TelegramUserContext> createUserContextFn;
 
         public SingleBot[] Bots { get; set; }
@@ -26,7 +26,7 @@ namespace TelegramBot.Tools
         private ConcurrentDictionary<string, TelegramUserContext> contexts = new ConcurrentDictionary<string, TelegramUserContext>();
         private string GetUserKey(SingleBot bot, Message message) => $"{message.Chat.Username}{bot.Name}";
 
-        public TelegramBotManager(ILog log, IBotManagerSettings settings, Func<SingleBot, TelegramUserContext> createUserContextFn)
+        public TelegramBotManager(ILog log, ITelegramBotManagerSettings settings, Func<SingleBot, TelegramUserContext> createUserContextFn)
         {
             this.log = log;
             this.settings = settings;

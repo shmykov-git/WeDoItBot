@@ -14,5 +14,6 @@ namespace Bot.Model
         Task VisitButtonDialog(ButtonDialog buttonDialog);
         Task VisitButtonMenu(ButtonMenu buttonDialog);
         Task EnterPlace(EnterPlace enterPlace);
+        Task VisitGenRoom(GenPicRoom genPicRoom);
     }
 }

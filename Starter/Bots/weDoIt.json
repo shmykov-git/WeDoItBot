@@ -32,6 +32,10 @@
           "Go": "enterProfile"
         },
         {
+          "Button": "Статистика",
+          "Go": "statistics" 
+        },
+        {
           "Button": "Карта бота",
           "Go": "botmap"
         }
@@ -72,7 +76,7 @@
     {
       "Id": "underconstruction",
       "Say": "Это пока не готово",
-      "Go": "start"
+      "Go": "service"
     },
     {
       "Id": "enterProfile",
@@ -97,6 +101,11 @@
       "Id": "botmap",
       "Do": "SendConfig",
       "AutoGo": "service"
+    },
+    {
+      "Id": "statistics",
+      "Gen": "GenerateStatistics",
+      "Go": "service" 
     }
   ]
 }

@@ -3,7 +3,7 @@ using TelegramBot.Model;
 
 namespace TelegramBot.Tools
 {
-    interface IBotManagerSettings
+    public interface ITelegramBotManagerSettings
     {
         SingleBotSettings[] Bots { get; }
     }

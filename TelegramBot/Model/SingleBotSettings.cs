@@ -1,6 +1,6 @@
 namespace TelegramBot.Model
 {
-    class SingleBotSettings
+    public class SingleBotSettings
     {
         public string Name { get; set; }
         public string BotMapFile { get; set; }

@@ -11,9 +11,9 @@ namespace TelegramBot.Services
     {
         private readonly ILog log;
         private readonly ITelegramBotServiceSettings settings;
-        private readonly TelegramBotManager botManager;
+        private readonly ITelegramBotManager botManager;
 
-        public TelegramBotService(ILog log, ITelegramBotServiceSettings settings, TelegramBotManager botManager)
+        public TelegramBotService(ILog log, ITelegramBotServiceSettings settings, ITelegramBotManager botManager)
         {
             this.log = log;
             this.settings = settings;

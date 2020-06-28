@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Diagnostics;
-using System.ServiceProcess;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Starter;
 using Suit;
 using Suit.Logs;
-using TelegramBot.Services;
+using TelegramBot;
 using TelegramBot.Tools;
 
-namespace TelegramBot
+namespace WeDoItStarter
 {
     class Program
     {
         static Program()
         {
-            IoC.Configure(IoCTelegramBot.Register);
+            IoC.Configure(IoCTelegramBot.Register, IoCStarter.Register);
         }
 
         static void Main(string[] args)
@@ -45,7 +42,7 @@ namespace TelegramBot
             //{
                 log.Debug("### Start console ###");
 
-                IoC.Get<TelegramBotManager>().Start();
+                IoC.Get<ITelegramBotManager>().Start();
 
                 Console.ReadLine();
 

@@ -73,6 +73,14 @@ namespace Bot.Test
             return Task.CompletedTask;
         }
 
+        public Task VisitGenRoom(GenPicRoom genPicRoom)
+        {
+            log.Debug($"");
+            log.Debug($"GEN: {genPicRoom.ActionName}(\"{genPicRoom.ActionArgument}\");");
+
+            return Task.CompletedTask;
+        }
+
         public Task VisitPicRoom(PicRoom picRoom)
         {
             log.Debug("");

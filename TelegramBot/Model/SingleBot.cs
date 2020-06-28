@@ -3,7 +3,7 @@ using Telegram.Bot;
 
 namespace TelegramBot.Model
 {
-    class SingleBot
+    public class SingleBot
     {
         public string Name { get; set; }
         public string BotMapFile { get; set; }
