@@ -2,6 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Net;
+using System.Text;
 using Bot.Extensions;
 using Bot.Model;
 using Suit.Aspects;
@@ -79,7 +80,7 @@ namespace TelegramBot.Tools
 
                 bot.Settings = botSettings;
                 bot.BotMapFile = botSettings.BotMapFile;
-                bot.BotConfig = File.ReadAllText(botSettings.BotMapFile);
+                bot.BotConfig = File.ReadAllText(botSettings.BotMapFile, Encoding.UTF8);
                 bot.Map = bot.BotConfig.ToBotMap();
 
                 if (botSettings.ProxyHost.IsNullOrEmpty())
