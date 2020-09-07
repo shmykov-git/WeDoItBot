@@ -68,6 +68,7 @@ namespace TelegramBot.Tools
                 });
         }
 
+        [LoggingAspect]
         public void Start()
         {
             Bots = settings.Bots.Select(botSettings =>
