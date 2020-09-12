@@ -11,7 +11,7 @@ namespace Bot.Test
     {
         public static void Register(UnityContainer container)
         {
-            container.RegisterType<ILog, LogToDebugAndConsole>();
+            container.RegisterType<ILog, LogToConsole>();
             container.RegisterSingleton<IBotMapVisitor, TestBotMapVisitor>();
 
             container.RegisterSingleton<TestBotMaestro>();
