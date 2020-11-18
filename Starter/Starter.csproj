@@ -6,6 +6,7 @@
     <ApplicationIcon />
     <StartupObject></StartupObject>
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

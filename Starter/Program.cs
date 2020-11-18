@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Starter;
 using Suit;
 using Suit.Logs;
@@ -14,7 +15,7 @@ namespace WeDoItStarter
             IoC.Configure(IoCTelegramBot.Register, IoCStarter.Register);
         }
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var log = IoC.Get<ILog>();
             //var isService = args.Length > 0 && args[0] == "service";
@@ -44,7 +45,8 @@ namespace WeDoItStarter
 
                 IoC.Get<ITelegramBotManager>().Start();
 
-                Console.ReadLine();
+                while (true) await Task.Delay(1000);
+                //Console.ReadLine();
 
                 log.Debug("### End ###");
             //}
