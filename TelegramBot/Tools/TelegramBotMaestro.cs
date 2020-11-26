@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using Bot.Extensions;
 using Bot.Model;
+using Bot.Model.RoomPlaces;
 using Bot.Model.Rooms;
 using Suit.Aspects;
 using Suit.Extensions;
@@ -63,11 +64,37 @@ namespace TelegramBot.Tools
 
             if (context.State.StateType == StateType.WaitingForAnswer)
             {
-                var key = (context.State.CurrentRoom as ShowRoom).EnterPlace.Key;
+                var room = (ShowRoom)context.State.CurrentRoom;
+
+                if (room.EnterPlace.Type != EnterType.Text)
+                    return;
+
+                var key = room.EnterPlace.Key;
 
                 context.State.Values.TryAdd(key, message);
 
-                var room = context.State.CurrentRoom;
+                await room.Visit(context.Visitor);
+
+                if ((room as ShowRoom)?.EnterPlace == null)
+                    context.State.StateType = StateType.None;
+
+                if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
+                    Command(room.AutoGo);
+            }
+        }
+
+        public async void Photo(string fileFilePath)
+        {
+            if (context.State.StateType == StateType.WaitingForAnswer)
+            {
+                var room = (ShowRoom)context.State.CurrentRoom;
+
+                if (room.EnterPlace.Type != EnterType.Photo)
+                    return;
+
+                var key = room.EnterPlace.Key;
+
+                context.State.Values.AddOrUpdate(key, k => fileFilePath, (k, v) => fileFilePath);
 
                 await room.Visit(context.Visitor);
 

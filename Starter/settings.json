@@ -1,6 +1,12 @@
 ﻿{
   "Bots": [
     {
+      "Name": "@prediction777_bot",
+      "BotMapFile": "Bots/prediction.json",
+      "BotToken": "1445586403:AAF_sdus5neeHHgujv-TElFe0pGHsGQcnTA",
+      "Content": "Bots/Prediction"
+    },
+    {
       "Name": "@WeDoItHakatonBot",
       "BotMapFile": "Bots/weDoIt.json",
       "BotToken": "1107856285:AAHcDAuZg-BikqjCUAIb6ro8z3prriYR3sg",
@@ -13,6 +19,7 @@
       "Content": "Bots/HowTo"
     }
   ],
+  "BotFiles": "https://api.telegram.org/file/bot<token>/<file_path>",
   "BotTemplates": [
     {
       "Name": "@vasy_do_it_bot",

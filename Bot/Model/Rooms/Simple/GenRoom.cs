@@ -8,10 +8,12 @@ namespace Bot.Model.Rooms.Simple
     public class GenRoom : GenPicRoom
     {
         public string Gen { get; set; }
+        public string GenKey { get; set; }
 
         protected override void Simplify()
         {
             ActionName = Gen;
+            ActionArgument = GenKey;
         }
 
         [JsonIgnore]

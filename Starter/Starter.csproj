@@ -10,21 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Bots\breeze.json" />
     <None Remove="Bots\howTo.json" />
+    <None Remove="Bots\prediction.json" />
     <None Remove="Bots\vasy.json" />
     <None Remove="Bots\weDoIt.json" />
     <None Remove="NLog.config" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Bots\breeze.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Bots\howTo.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Bots\vasy.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bots\prediction.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Bots\weDoIt.json">
@@ -105,6 +105,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Bots\HowTo\чтоТакоеВариатор.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Bots\Prediction\error.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Bots\Prediction\selectPrediction.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Bots\Prediction\things.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Bots\WeDoIt\emebot.jpg">

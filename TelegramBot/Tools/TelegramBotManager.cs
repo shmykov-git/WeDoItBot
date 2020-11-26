@@ -94,12 +94,25 @@ namespace TelegramBot.Tools
                     bot.Client = new TelegramBotClient(botSettings.BotToken, proxy);
                 }
 
-                bot.Client.OnMessage += (o, a) =>
+                bot.Client.OnMessage += async (o, a) =>
                 {
                     try
                     {
-                        if (IsActual(a.Message))
+                        if (!IsActual(a.Message))
+                            return;
+
+                        if (a.Message.Text.IsNotNullOrEmpty())
                             GetContext(bot, a.Message).Maestro.Type(a.Message.Text);
+
+                        if (a.Message.Photo != null)
+                        {
+                            var file = await bot.Client.GetFileAsync(a.Message.Photo.Last().FileId);
+
+                            var fileName = settings.GetBotFile(bot.Settings.BotToken, file.FilePath);
+
+                            GetContext(bot, a.Message).Maestro.Photo(fileName);
+                        }
+
                     }
                     catch (Exception e)
                     {

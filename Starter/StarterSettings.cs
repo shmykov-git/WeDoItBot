@@ -17,6 +17,9 @@ namespace Starter
         }
 
         public SingleBotSettings[] Bots => settings["Bots"].Cast<JObject>().Select(bot => bot.ToObject<SingleBotSettings>()).ToArray();
+        public string BotFiles => settings[nameof(BotFiles)]?.ToString();
 
+        public string GetBotFile(string token, string path) =>
+            BotFiles.Replace("<token>", token).Replace("<file_path>", path);
     }
 }

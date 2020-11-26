@@ -17,7 +17,7 @@ namespace Bot.Model.Rooms
 
         public void Generate(PicAndCaptionResult picGen)
         {
-            if (picGen.NameGoes.Any())
+            if (picGen.NameGoes != null && picGen.NameGoes.Any())
             {
                 Places = new RoomPlace[]
                 {

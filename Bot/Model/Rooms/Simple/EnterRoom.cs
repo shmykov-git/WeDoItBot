@@ -16,6 +16,7 @@ namespace Bot.Model.Rooms.Simple
                 Places = Items.Select(item => new EnterPlace()
                 {
                     Key = item.Key,
+                    Type = item.Type,
                     Name = item.Name
                 }).ToArray();
         }

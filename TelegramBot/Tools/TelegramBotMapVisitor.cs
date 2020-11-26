@@ -118,16 +118,21 @@ namespace TelegramBot.Tools
 
         public async Task VisitGenRoom(GenPicRoom genPicRoom)
         {
+            string value = null;
+            if (genPicRoom.ActionArgument != null)
+                context.State.Values.TryGetValue(genPicRoom.ActionArgument, out value);
+
             var result = await actionManager.DoAction(new ActionArguments()
             {
                 BotName = context.Bot.Name,
                 ActionName = genPicRoom.ActionName,
-                ActionOption = genPicRoom.ActionArgument
+                ActionOption = value
             });
 
             if (result is PicAndCaptionResult picAndCaptionResult)
             {
-                await SendPic(picAndCaptionResult.Pic);
+                if (picAndCaptionResult.Pic != null)
+                    await SendPic(picAndCaptionResult.Pic);
 
                 genPicRoom.Generate(picAndCaptionResult);
 
