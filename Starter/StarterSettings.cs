@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
@@ -7,7 +8,7 @@ using TelegramBot.Tools;
 
 namespace Starter
 {
-	class StarterSettings : ITelegramBotManagerSettings
+	class StarterSettings : ITelegramBotManagerSettings, IActionManagerSettings
     {
         private JObject settings;
 
@@ -21,5 +22,7 @@ namespace Starter
 
         public string GetBotFile(string token, string path) =>
             BotFiles.Replace("<token>", token).Replace("<file_path>", path);
+
+        public string PredictionApiUrl => Environment.GetEnvironmentVariable("PREDICTION_APIURL") ?? "http://localhost:5050/";
     }
 }

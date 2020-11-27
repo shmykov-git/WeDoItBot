@@ -12,11 +12,13 @@ namespace Starter
         {
             container.RegisterSingleton<StarterSettings>();
             container.RegisterFactory<ITelegramBotManagerSettings>(c => IoC.Get<StarterSettings>());
+            container.RegisterFactory<IActionManagerSettings>(c => IoC.Get<StarterSettings>());
+            
             //container.RegisterFactory<ITelegramBotServiceSettings>(c => IoC.Get<StarterSettings>());
 
             container.RegisterSingleton<TelegramBotService>();
 
-            container.RegisterType<IActionManagerSettings, BotActionManager>();
+            container.RegisterType<IActionManager, BotActionManager>();
         }
     }
 }

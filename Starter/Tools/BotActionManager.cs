@@ -11,13 +11,15 @@ using TelegramBot.Tools;
 
 namespace Starter.Tools
 {
-    class BotActionManager : IActionManagerSettings
+    class BotActionManager : IActionManager
     {
         private readonly ILog log;
+        private readonly IActionManagerSettings settings;
 
-        public BotActionManager(ILog log)
+        public BotActionManager(ILog log, IActionManagerSettings settings)
         {
             this.log = log;
+            this.settings = settings;
         }
 
         public async Task<ActionResult> DoAction(ActionArguments arguments)
@@ -70,7 +72,7 @@ namespace Starter.Tools
                 string prediction = null;
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://prediction:5050/");
+                    client.BaseAddress = new Uri(settings.PredictionApiUrl);
 
                     var content = new ByteArrayContent(bytes);
                     content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");

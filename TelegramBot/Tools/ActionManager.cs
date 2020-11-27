@@ -11,9 +11,9 @@ namespace TelegramBot.Tools
     class ActionManager
     {
         private readonly ILog log;
-        private readonly IActionManagerSettings settings;
+        private readonly IActionManager settings;
 
-        public ActionManager(ILog log, IActionManagerSettings settings)
+        public ActionManager(ILog log, IActionManager settings)
         {
             this.log = log;
             this.settings = settings;
