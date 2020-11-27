@@ -6,12 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Bot.PublicModel;
 using Bot.PublicModel.ActionResult;
+using Suit.Logs;
 using TelegramBot.Tools;
 
 namespace Starter.Tools
 {
     class BotActionManager : IActionManagerSettings
     {
+        private readonly ILog log;
+
+        public BotActionManager(ILog log)
+        {
+            this.log = log;
+        }
+
         public async Task<ActionResult> DoAction(ActionArguments arguments)
         {
             switch (arguments.ActionName)
@@ -41,53 +49,59 @@ namespace Starter.Tools
 
         public async Task<PicAndCaptionResult> GeneratePrediction(ActionArguments arguments)
         {
+            PicAndCaptionResult GetError() =>
+                new PicAndCaptionResult()
+                {
+                    Pic = File.ReadAllBytes("Bots/Prediction/error.png"),
+                    Caption = "Все сломалось, шеф...",
+                };
+
             if (arguments.ActionOption == null)
-                return new PicAndCaptionResult()
-                {
-                    Pic = File.ReadAllBytes("Bots/Prediction/error.png"),
-                    Caption = "Все сломалось, шеф...",
-                };
+                return GetError();
 
-            byte[] bytes;
-            using (var client = new HttpClient())
+            try
             {
-                bytes = await client.GetByteArrayAsync(arguments.ActionOption);
-            }
-
-            string prediction = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://127.0.0.1:5050/");
-
-                var content = new ByteArrayContent(bytes);
-                content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-
-                var result = await client.PostAsync("predict", content);
-
-                if (result.IsSuccessStatusCode)
+                byte[] bytes;
+                using (var client = new HttpClient())
                 {
-                    prediction = await result.Content.ReadAsStringAsync();
+                    bytes = await client.GetByteArrayAsync(arguments.ActionOption);
                 }
-            }
 
-            if (prediction == null)
+                string prediction = null;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://prediction:5050/");
+
+                    var content = new ByteArrayContent(bytes);
+                    content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+
+                    var result = await client.PostAsync("predict", content);
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        prediction = await result.Content.ReadAsStringAsync();
+                    }
+                }
+
+                if (prediction == null)
+                    GetError();
+
                 return new PicAndCaptionResult()
                 {
-                    Pic = File.ReadAllBytes("Bots/Prediction/error.png"),
-                    Caption = "Все сломалось, шеф...",
+                    Caption = $"Это {prediction}. Попробовать еще раз?",
+                    NameGoes = new NameGo[]
+                    {
+                        ("Да", "things"),
+                        ("Нет", "selectPrediction")
+                    },
+                    ColumnsCount = 2
                 };
-
-            return new PicAndCaptionResult()
+            }
+            catch (Exception e)
             {
-                Caption = $"Это {prediction}. Попробовать еще раз?",
-                NameGoes = new NameGo[]
-                {
-                    ("Да", "things"),
-                    ("Нет", "selectPrediction")
-                },
-                ColumnsCount = 2
-            };
+                log.Exception(e);
+                return GetError();
+            }
         }
-
     }
 }
