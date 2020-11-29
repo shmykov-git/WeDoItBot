@@ -34,15 +34,15 @@ namespace TelegramBot.Tools
             this.createUserContextFn = createUserContextFn;
         }
 
-        private TelegramUserContext GetContext(SingleBot bot, CallbackQuery query)
+        private TelegramUserContext GetContextByCallback(SingleBot bot, CallbackQuery query)
         {
-            var context = GetContext(bot, query.Message);
+            var context = GetContextByMessage(bot, query.Message);
             context.CallbackQuery = query;
 
             return context;
         }
 
-        private TelegramUserContext GetContext(SingleBot bot, Message message)
+        private TelegramUserContext GetContextByMessage(SingleBot bot, Message message)
         {
             var contextKey = GetUserKey(bot, message);
 
@@ -102,7 +102,7 @@ namespace TelegramBot.Tools
                             return;
 
                         if (a.Message.Text.IsNotNullOrEmpty())
-                            GetContext(bot, a.Message).Maestro.Type(a.Message.Text);
+                            GetContextByMessage(bot, a.Message).Maestro.Type(a.Message.Text);
 
                         if (a.Message.Photo != null)
                         {
@@ -110,7 +110,7 @@ namespace TelegramBot.Tools
 
                             var fileName = settings.GetBotFile(bot.Settings.BotToken, file.FilePath);
 
-                            GetContext(bot, a.Message).Maestro.Photo(fileName);
+                            GetContextByMessage(bot, a.Message).Maestro.Photo(fileName);
                         }
 
                     }
@@ -125,7 +125,7 @@ namespace TelegramBot.Tools
                     try
                     {
                         if (IsActual(a.CallbackQuery.Message))
-                            GetContext(bot, a.CallbackQuery).Maestro.Command(a.CallbackQuery.Data);
+                            GetContextByCallback(bot, a.CallbackQuery).Maestro.Command(a.CallbackQuery.Data);
                     }
                     catch (Exception e)
                     {

@@ -24,6 +24,9 @@ namespace TelegramBot.Tools
             if (contentFolder.IsNullOrEmpty())
                 return;
 
+            if (!Directory.Exists(contentFolder))
+                return;
+
             foreach (var fileName in Directory.GetFiles(contentFolder))
             {
                 if (Path.GetFileName(fileName) == "mapper.json")
