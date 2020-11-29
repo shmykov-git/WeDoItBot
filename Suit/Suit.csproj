@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>shmykov.dev.Suit</PackageId>
     <Authors>Alexey Shmykov</Authors>
     <Description>IoC, NLog, Log by Aspect, Ext: (Json, Linq, String)</Description>
@@ -17,8 +17,8 @@
   <ItemGroup>
     <PackageReference Include="AspectInjector" Version="2.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="NLog" Version="4.7.4" />
-    <PackageReference Include="Unity" Version="5.11.7" />
+    <PackageReference Include="NLog" Version="4.7.5" />
+    <PackageReference Include="Unity" Version="5.11.9" />
   </ItemGroup>
 
 </Project>

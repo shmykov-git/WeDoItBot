@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
-COPY Starter/bin/Release/netcoreapp2.2/publish/ App/
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+COPY Starter/bin/Release/net5.0/publish/ App/
 WORKDIR /App
 ENTRYPOINT ["dotnet", "Starter.dll"]
