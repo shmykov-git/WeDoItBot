@@ -34,6 +34,10 @@ namespace Bot.Extensions
             return json.ToObject<BotMap>(new JsonSerializer() {TypeNameHandling = TypeNameHandling.All});
         }
 
+        public static bool RoomExists(this BotMap map, string key)
+        {
+            return map.Rooms.Any(r => r.Key == key);
+        }
         public static Room FindRoom(this BotMap map, string key)
         {
             return map.Rooms.First(r => r.Key == key);

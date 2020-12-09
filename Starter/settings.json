@@ -1,6 +1,12 @@
 ﻿{
   "Bots": [
     {
+      "Name": "@shpargalka777_bot",
+      "BotMapFile": "Bots/shpargalka.json",
+      "BotToken": "1478275699:AAHfrAp07pmc5gt9eKbhHAUaG7uDueRT6nA",
+      "Content": "Bots/Shpargalka"
+    },
+    {
       "Name": "@prediction777_bot",
       "BotMapFile": "Bots/prediction.json",
       "BotToken": "1445586403:AAF_sdus5neeHHgujv-TElFe0pGHsGQcnTA",

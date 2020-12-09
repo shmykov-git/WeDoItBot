@@ -36,6 +36,13 @@ namespace TelegramBot.Tools
 
         public async void Command(string command)
         {
+            if (!context.Bot.Map.RoomExists(command))
+            {
+                log.Warn($"There is no room {command}");
+
+                return;
+            }
+
             var room = context.Bot.Map.FindRoom(command);
 
             context.State.CurrentRoom = room;
