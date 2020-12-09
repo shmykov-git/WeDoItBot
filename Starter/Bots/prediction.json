@@ -2,11 +2,11 @@
   "Rooms": [
     {
       "Id": "start",
-      "AutoGo": "selectPrediction"
+      "AutoGo": "service"
     },
     {
-      "Id": "selectPrediction",
-      "List": "Что будем угадывать?",
+      "Id": "service",
+      "List": "Выберите что угадывать?",
       "Items": [
         {
           "Button": "Предметы: самолет, автомобиль, птица...",
@@ -16,12 +16,12 @@
     },
     {
       "Id": "things",
-      "Enter": "Я угадаю один из этих предметов: самолет, автомобиль, птица, кошка, олень, собака, лягушка, лошадь, корабль, грузовик",
+      "Enter": "Загрузите один из предметов: самолет, автомобиль, птица, кошка, олень, собака, лягушка, лошадь, корабль, грузовик",
       "Items": [
         {
           "Key": "Prediction",
           "Type": "Photo",
-          "Name": "Загрузите картинку..."
+          "Name": "Жду картинку..."
         }
       ],
       "AutoGo": "prediction"
@@ -30,7 +30,7 @@
       "Id": "prediction",
       "Gen": "GeneratePrediction",
       "GenKey": "Prediction",
-      "Go": "selectPrediction"
+      "Go": "service"
     }
   ]
 }

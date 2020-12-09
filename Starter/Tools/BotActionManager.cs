@@ -94,7 +94,7 @@ namespace Starter.Tools
                     NameGoes = new NameGo[]
                     {
                         ("Да", "things"),
-                        ("Нет", "selectPrediction")
+                        ("Нет", "service")
                     },
                     ColumnsCount = 2
                 };

@@ -23,13 +23,14 @@ namespace TelegramBot
                     Bot = bot,
                 };
 
-                context.Visitor = new TelegramBotMapVisitor(IoC.Get<ILog>(), IoC.Get<ContentManager>(), IoC.Get<ActionManager>(), context);
+                context.ContentManager = IoC.Get<ContentManager>();
+                context.Visitor = new TelegramBotMapVisitor(IoC.Get<ILog>(), context.ContentManager, IoC.Get<ActionManager>(), context);
                 context.Maestro = new TelegramBotMaestro(IoC.Get<ILog>(), context);
 
                 return context;
             }));
 
-            container.RegisterSingleton<ContentManager>();
+            //container.RegisterSingleton<ContentManager>();
         }
     }
 }

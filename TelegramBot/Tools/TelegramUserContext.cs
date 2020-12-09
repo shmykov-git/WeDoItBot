@@ -14,6 +14,8 @@ namespace TelegramBot.Tools
         public IBotMapVisitor Visitor { get; set; }
         public IBotMaestro Maestro { get; set; }
 
+        public ContentManager ContentManager { get; set; }
+
         public string UserKey { get; set; }
         public SingleBot Bot { get; set; }
         public Message Message { get; set; }

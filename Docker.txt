@@ -1,5 +1,8 @@
 cd C:\Projects\WeDoItBot
 dotnet publish -c Release
+cd C:\Projects\_Up\bots
+
+
 docker build -t we-do-it-image -f Dockerfile .
 docker run -d --restart unless-stopped --name we-do-it we-do-it-image
 
