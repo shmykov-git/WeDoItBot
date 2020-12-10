@@ -13,6 +13,7 @@
     <None Remove="Bots\howTo.json" />
     <None Remove="Bots\prediction.json" />
     <None Remove="Bots\shpargalka.json" />
+    <None Remove="Bots\thanksLK.json" />
     <None Remove="Bots\vasy.json" />
     <None Remove="Bots\weDoIt.json" />
     <None Remove="NLog.config" />
@@ -20,6 +21,9 @@
 
   <ItemGroup>
     <Content Include="Bots\howTo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bots\thanksLK.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Bots\shpargalka.json">
@@ -135,6 +139,9 @@
     <None Update="Bots\Shpargalka\solid_s.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Bots\ThanksLK\18.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Bots\WeDoIt\emebot.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -168,10 +175,6 @@
     <None Update="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Bots\ThanksLK\" />
   </ItemGroup>
 
 </Project>
