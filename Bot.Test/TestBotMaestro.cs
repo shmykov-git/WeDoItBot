@@ -60,9 +60,9 @@ namespace Bot.Test
             log.Debug($"type>{message}");
         }
 
-        public void Photo(string fileFilePath)
+        public void Photo(string fileName)
         {
-            log.Debug($"file>{fileFilePath}");
+            log.Debug($"file>{fileName}");
         }
     }
 }

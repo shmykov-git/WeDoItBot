@@ -90,7 +90,7 @@ namespace TelegramBot.Tools
             }
         }
 
-        public async void Photo(string fileFilePath)
+        public async void Photo(string fileName)
         {
             if (context.State.StateType == StateType.WaitingForAnswer)
             {
@@ -101,7 +101,7 @@ namespace TelegramBot.Tools
 
                 var key = room.EnterPlace.Key;
 
-                context.State.Values.AddOrUpdate(key, k => fileFilePath, (k, v) => fileFilePath);
+                context.State.Values.AddOrUpdate(key, k => fileName, (k, v) => fileName);
 
                 await room.Visit(context.Visitor);
 

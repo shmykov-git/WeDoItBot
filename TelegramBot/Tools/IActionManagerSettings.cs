@@ -2,6 +2,6 @@ namespace TelegramBot.Tools
 {
     public interface IActionManagerSettings
     {
-        string PredictionApiUrl { get; }
+        string GetPredictionApiUrl(string modelName);
     }
 }

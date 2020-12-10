@@ -43,8 +43,19 @@
       "Content": "C:\\Projects\\WeDoItBot\\Starter\\Bots\\WeDoIt"
     },
 
+    {
+      "Name": "@vasy_do_it_bot",
+      "BotMapFile": "Bots/prediction.json",
+      "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
+      "Content": "Bots/Prediction"
+    },
 
-
+    {
+      "Name": "@shpargalka777_bot",
+      "BotMapFile": "Bots/shpargalka.json",
+      "BotToken": "1478275699:AAHfrAp07pmc5gt9eKbhHAUaG7uDueRT6nA",
+      "Content": "Bots/Shpargalka"
+    },
     {
       "Name": "@prediction777_bot",
       "BotMapFile": "Bots/prediction.json",

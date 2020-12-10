@@ -39,7 +39,7 @@ namespace TelegramBot.Tools
                 var key = Path.GetFileNameWithoutExtension(fileName).ToLower();
                 var bytes = File.ReadAllBytes(fileName);
 
-                dataItems.Add(key, bytes);
+                dataItems.TryAdd(key, bytes);
             }
         }
 

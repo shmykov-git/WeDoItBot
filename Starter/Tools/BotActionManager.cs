@@ -40,16 +40,19 @@ namespace Starter.Tools
                         },
                         ColumnsCount = 3
                     };
-                
-                case "GeneratePrediction":
-                    return await GeneratePrediction(arguments);
+
+                case "GeneratePredictionThings":
+                    return await GeneratePrediction("things", arguments);
+
+                case "GeneratePredictionClothes":
+                    return await GeneratePrediction("clothes", arguments);
 
                 default:
                     throw new NotImplementedException(arguments.ActionName);
             }
         }
 
-        public async Task<PicAndCaptionResult> GeneratePrediction(ActionArguments arguments)
+        public async Task<PicAndCaptionResult> GeneratePrediction(string modelName, ActionArguments arguments)
         {
             PicAndCaptionResult GetError() =>
                 new PicAndCaptionResult()
@@ -72,12 +75,11 @@ namespace Starter.Tools
                 string prediction = null;
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri(settings.PredictionApiUrl);
-
                     var content = new ByteArrayContent(bytes);
                     content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 
-                    var result = await client.PostAsync("predict", content);
+                    var url = settings.GetPredictionApiUrl(modelName);
+                    var result = await client.PostAsync(url, content);
 
                     if (result.IsSuccessStatusCode)
                     {
@@ -93,7 +95,7 @@ namespace Starter.Tools
                     Caption = $"Это {prediction}. Попробовать еще раз?",
                     NameGoes = new NameGo[]
                     {
-                        ("Да", "things"),
+                        ("Да", modelName),
                         ("Нет", "service")
                     },
                     ColumnsCount = 2

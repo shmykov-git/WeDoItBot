@@ -11,6 +11,10 @@
         {
           "Button": "Предметы: самолет, автомобиль, птица...",
           "Go": "things"
+        },
+        {
+          "Button": "Одежда: футболка, брюки, пальто...",
+          "Go": "clothes"
         }
       ]
     },
@@ -19,17 +23,35 @@
       "Enter": "Загрузите один из предметов: самолет, автомобиль, птица, кошка, олень, собака, лягушка, лошадь, корабль, грузовик",
       "Items": [
         {
-          "Key": "Prediction",
+          "Key": "PredictionThings",
           "Type": "Photo",
-          "Name": "Жду картинку..."
+          "Name": "Загрузите картинку"
         }
       ],
-      "AutoGo": "prediction"
+      "AutoGo": "predictionThings"
     },
     {
-      "Id": "prediction",
-      "Gen": "GeneratePrediction",
-      "GenKey": "Prediction",
+      "Id": "predictionThings",
+      "Gen": "GeneratePredictionThings",
+      "GenKey": "PredictionThings",
+      "Go": "service"
+    },
+    {
+      "Id": "clothes",
+      "Enter": "Загрузите один из предметов: футболка, брюки, пуловер, платье, пальто, сандалии, рубашка, кроссовки, сумка, ботинки",
+      "Items": [
+        {
+          "Key": "PredictionClothes",
+          "Type": "Photo",
+          "Name": "Загрузите картинку"
+        }
+      ],
+      "AutoGo": "predictionClothes"
+    },
+    {
+      "Id": "predictionClothes",
+      "Gen": "GeneratePredictionClothes",
+      "GenKey": "PredictionClothes",
       "Go": "service"
     }
   ]
