@@ -1,6 +1,12 @@
 ﻿{
   "Bots": [
     {
+      "Name": "@thanksLK_bot",
+      "BotMapFile": "Bots/thanksLK.json",
+      "BotToken": "1284985093:AAFbouig7P-0qnooisjyDG2PrvgqftTdQYk",
+      "Content": "Bots/ThanksLK"
+    },
+    {
       "Name": "@shpargalka777_bot",
       "BotMapFile": "Bots/shpargalka.json",
       "BotToken": "1478275699:AAHfrAp07pmc5gt9eKbhHAUaG7uDueRT6nA",
@@ -50,6 +56,12 @@
       "Content": "Bots/Prediction"
     },
 
+    {
+      "Name": "@thanksLK_bot",
+      "BotMapFile": "Bots/thanksLK.json",
+      "BotToken": "1284985093:AAFbouig7P-0qnooisjyDG2PrvgqftTdQYk",
+      "Content": "Bots/ThanksLK"
+    },
     {
       "Name": "@shpargalka777_bot",
       "BotMapFile": "Bots/shpargalka.json",

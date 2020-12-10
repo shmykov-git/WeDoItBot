@@ -174,7 +174,8 @@ namespace TelegramBot.Tools
 
         private async Task SendDialog(string text, IReplyMarkup replyMarkup)
         {
-            await Client.SendTextMessageAsync(ChatId, text, replyMarkup: replyMarkup);
+            if (text.IsNotNullOrEmpty())
+                await Client.SendTextMessageAsync(ChatId, text, replyMarkup: replyMarkup);
         }
 
         private async Task SendPic(string pic)
