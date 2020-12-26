@@ -49,10 +49,28 @@ namespace Bot.Test
             return Task.CompletedTask;
         }
 
+        public Task VisitReplyButton(ReplyButton button)
+        {
+            if (button.Caption.IsNotNullOrEmpty())
+                log.Debug(button.Caption);
+
+            log.Debug($"<ReplyButton key=\"{button.Go}\">{button.Name}</ReplyButton>");
+
+            return Task.CompletedTask;
+        }
+
         public Task VisitButtonDialog(ButtonDialog buttonDialog)
         {
             log.Debug($"{buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
             buttonDialog.Buttons.ForEach(async b => await VisitButton(b));
+
+            return Task.CompletedTask;
+        }
+
+        public Task VisitReplyButtonDialog(ReplyButtonDialog buttonDialog)
+        {
+            log.Debug($"Reply: {buttonDialog.Caption}, cols:{buttonDialog.ColumnsCount}");
+            buttonDialog.Buttons.ForEach(async b => await VisitReplyButton(b));
 
             return Task.CompletedTask;
         }

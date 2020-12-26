@@ -2,21 +2,22 @@
   "Rooms": [
     {
       "Id": "start",
-      "AutoGo": "HelloBot"
+      "AutoGo": "service"
     },
     {
-      "Id": "HelloBot",
-      "List": "Простой бот",
+      "Id": "service",
+      "Menu": "Простой бот",
       "Items": [
         {
-          "Button": "Скачать карту",
+          "Button": "🌏 Скачать карту",
           "Go": "botmap"
         },
         {
-          "Button": "Генерировать страницу",
+          "Button": "♫ Генерировать страницу",
           "Go": "Generated"
         }
-      ]
+      ],
+      "ColumnsCount": "2" 
     },
     {
       "Id": "botmap",
@@ -25,12 +26,12 @@
     },
     {
       "Id": "Generated",
-      "Gen": "HelloGenerated"
+      "Gen": "VasyGenerated"
     },
     {
       "Id": "underconstruction",
       "Say": "В разработке",
-      "Go": "HelloBot"
+      "Go": "service"
     }
   ]
 }

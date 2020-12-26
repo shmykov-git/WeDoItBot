@@ -41,6 +41,17 @@ namespace Starter.Tools
                         ColumnsCount = 3
                     };
 
+                case "VasyGenerated":
+                    return new PicAndCaptionResult()
+                    {
+                        Caption = "Любая картинка и информация",
+                        Pic = File.ReadAllBytes("Content/Gen.png"),
+                        NameGoes = new NameGo[]
+                        {
+                            ("Ну ладно", "service"),
+                        }
+                    };
+
                 case "GeneratePredictionThings":
                     return await GeneratePrediction("things", arguments);
 

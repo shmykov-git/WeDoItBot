@@ -97,6 +97,38 @@ namespace TelegramBot.Tools
                 ));
         }
 
+        public async Task VisitReplyButton(ReplyButton button)
+        {
+            //todo: implement FindReplyGo
+            await SendDialog(button.Caption, new ReplyKeyboardMarkup
+            {
+                Keyboard = new[]
+                {
+                    new[]
+                    {
+                        new KeyboardButton(button.Name)
+                    }
+                },
+                ResizeKeyboard = true,
+            });
+        }
+
+        public async Task VisitReplyButtonDialog(ReplyButtonDialog buttonDialog)
+        {
+            await SendDialog(buttonDialog.Caption,
+                new ReplyKeyboardMarkup(
+                    buttonDialog.Buttons
+                        .ByIndex()
+                        .GroupBy(i => i / buttonDialog.ColumnsCount)
+                        .Select(gi => gi.Select(i => buttonDialog.Buttons[i]).Select(button =>
+                            new KeyboardButton(button.Name)).ToArray())
+                        .ToArray()
+                )
+                {
+                    ResizeKeyboard = true
+                });
+        }
+
         public async Task VisitButtonMenu(ButtonMenu buttonDialog)
         {
             await SendDialog(buttonDialog.Caption,

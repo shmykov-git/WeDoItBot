@@ -69,6 +69,14 @@ namespace TelegramBot.Tools
                 return;
             }
 
+            var replyGoCommand = context.Bot.Map.FindReplyGo(message);
+            if (replyGoCommand.IsNotNullOrEmpty())
+            {
+                Command(replyGoCommand);
+
+                return;
+            }
+
             if (context.State.StateType == StateType.WaitingForAnswer)
             {
                 var room = (ShowRoom)context.State.CurrentRoom;

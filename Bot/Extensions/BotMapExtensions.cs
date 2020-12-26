@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Bot.Model;
+using Bot.Model.RoomPlaces;
 using Bot.Model.Rooms;
+using Bot.Model.Rooms.Simple;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Suit.Extensions;
@@ -10,7 +12,7 @@ namespace Bot.Extensions
     public static class BotMapExtensions
     {
         //todo: reflection, order
-        private static string[] roomTypes = {"Ask", "List", "Say", "Enter", "AutoGo", "Gen" };
+        private static string[] roomTypes = {"Ask", "List", "Menu", "Say", "Enter", "AutoGo", "Gen" };
 
         public static BotMap ToBotMap(this string jsonStr)
         {
@@ -41,6 +43,11 @@ namespace Bot.Extensions
         public static Room FindRoom(this BotMap map, string key)
         {
             return map.Rooms.First(r => r.Key == key);
+        }
+
+        public static string FindReplyGo(this BotMap map, string key)
+        {
+            return map.Rooms.OfType<MenuRoom>().SelectMany(mr=>mr.Items).FirstOrDefault(b=>b.Button == key)?.Go;
         }
     }
 }
