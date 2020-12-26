@@ -1,0 +1,35 @@
+﻿{
+  "Bots": [
+    {
+      "Name": "@thanksLK_bot",
+      "BotMapFile": "Bots/thanksLK.json",
+      "BotToken": "1284985093:AAFbouig7P-0qnooisjyDG2PrvgqftTdQYk",
+      "Content": "Bots/ThanksLK"
+    },
+    {
+      "Name": "@shpargalka777_bot",
+      "BotMapFile": "Bots/shpargalka.json",
+      "BotToken": "1478275699:AAHfrAp07pmc5gt9eKbhHAUaG7uDueRT6nA",
+      "Content": "Bots/Shpargalka"
+    },
+    {
+      "Name": "@prediction777_bot",
+      "BotMapFile": "Bots/prediction.json",
+      "BotToken": "1445586403:AAF_sdus5neeHHgujv-TElFe0pGHsGQcnTA",
+      "Content": "Bots/Prediction"
+    },
+    {
+      "Name": "@WeDoItHakatonBot",
+      "BotMapFile": "Bots/weDoIt.json",
+      "BotToken": "1107856285:AAHcDAuZg-BikqjCUAIb6ro8z3prriYR3sg",
+      "Content": "Bots/WeDoIt"
+    },
+    {
+      "Name": "@HowTo_123_bot",
+      "BotMapFile": "Bots/howTo.json",
+      "BotToken": "1246935312:AAGTr5w1YLrvTnu5Zt2uy4p1wFYnaKnupWE",
+      "Content": "Bots/HowTo"
+    }
+  ],
+  "BotFiles": "https://api.telegram.org/file/bot<token>/<file_path>"
+}
