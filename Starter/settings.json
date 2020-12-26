@@ -4,9 +4,9 @@
   "Bots": [
     {
       "Name": "@vasy_do_it_bot",
-      "BotMapFile": "Bots/vasy.json",
+      "BotMapFile": "Bots/shpargalka.json",
       "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
-      "Content": "Bots/Vasy"
+      "Content": "Bots/shpargalka"
     }
   ],
   "BotFiles": "https://api.telegram.org/file/bot<token>/<file_path>",

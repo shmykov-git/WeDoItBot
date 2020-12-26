@@ -4,6 +4,7 @@ using Bot.Extensions;
 using Bot.Model;
 using Bot.Model.RoomPlaces;
 using Bot.Model.Rooms;
+using Bot.Model.Rooms.Simple;
 using Suit.Aspects;
 using Suit.Extensions;
 using Suit.Logs;
@@ -46,6 +47,9 @@ namespace TelegramBot.Tools
             var room = context.Bot.Map.FindRoom(command);
 
             context.State.CurrentRoom = room;
+            if (room is MenuRoom menuRoom)
+                context.State.LastMenuRoom = menuRoom;
+
             context.State.StateType = StateType.None;
 
             await room.Visit(context.Visitor); 
@@ -69,7 +73,8 @@ namespace TelegramBot.Tools
                 return;
             }
 
-            var replyGoCommand = context.Bot.Map.FindReplyGo(message);
+            var replyGoCommand = context.State.LastMenuRoom?.FindReplyGo(message) ??
+                                 context.Bot.Map.FindReplyGo(message);
             if (replyGoCommand.IsNotNullOrEmpty())
             {
                 Command(replyGoCommand);

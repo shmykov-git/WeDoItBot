@@ -6,48 +6,48 @@
     },
     {
       "Id": "service",
-      "List": "Выберите вопрос",
+      "Menu": "Выберите вопрос",
       "Items": [
         {
-          "Button": "Что такое SOLID?",
+          "Button": "🎩 Что такое SOLID?",
           "Go": "solid"
         },
         {
-          "Button": "Что такое IoC?",
+          "Button": "🎩 Что такое IoC?",
           "Go": "IoC"
         },
         {
-          "Button": "Что такое GRASP?",
+          "Button": "🎩 Что такое GRASP?",
           "Go": "GRASP"
         }
       ]
     },
     {
       "Id": "solid",
-      "List": "Это набор принципов разработки ПО",
+      "Menu": "Это набор принципов разработки ПО",
       "Items": [
         {
-          "Button": "S",
+          "Button": "Ⓢ",
           "Go": "solid_s"
         },
         {
-          "Button": "O",
+          "Button": "Ⓞ",
           "Go": "solid_o"
         },
         {
-          "Button": "L",
+          "Button": "Ⓛ",
           "Go": "solid_l"
         },
         {
-          "Button": "I",
+          "Button": "Ⓘ",
           "Go": "solid_i"
         },
         {
-          "Button": "D",
+          "Button": "Ⓓ",
           "Go": "solid_d"
         },
         {
-          "Button": "..",
+          "Button": "◄",
           "Go": "service"
         }
       ],
@@ -80,21 +80,22 @@
     },
     {
       "Id": "IoC",
-      "List": "Это принцип инверсии управления. Делегирование контроля выполнения кода отдельному фреймворку",
+      "Menu": "Это принцип инверсии управления. Делегирование контроля выполнения кода отдельному фреймворку",
       "Items": [
         {
-          "Button": "Табличка",
+          "Button": "Ⓣ Табличка",
           "Go": "IoC_table"
         },
         {
-          "Button": "Разъясняющий пример",
+          "Button": "☕ Разъяснялка",
           "Go": "IoC_text"
         },
         {
-          "Button": "..",
+          "Button": "◄",
           "Go": "service"
         }
-      ]
+      ],
+      "ColumnsCount": "3" 
     },
     {
       "Id": "IoC_table",
@@ -108,46 +109,46 @@
     },
     {
       "Id": "GRASP",
-      "List": "GRASP (general responsibility assignment software patterns)\nКак правильно наделять классы той или иной ответственностью? - вот об этом данные принципы проектирования",
+      "Menu": "GRASP (general responsibility assignment software patterns)\nКак правильно наделять классы той или иной ответственностью? - вот об этом данные принципы проектирования",
       "Items": [
         {
-          "Button": "Information Expert",
+          "Button": "🔸 Information Expert",
           "Go": "GRASP_InformationExpert"
         },
         {
-          "Button": "Creator",
+          "Button": "🔸 Creator",
           "Go": "GRASP_Creator"
         },
         {
-          "Button": "Controller",
+          "Button": "🔸 Controller",
           "Go": "GRASP_Controller"
         },
         {
-          "Button": "Low Coupling",
+          "Button": "🔸 Low Coupling",
           "Go": "GRASP_LowCoupling"
         },
         {
-          "Button": "High Cohesion",
+          "Button": "🔸 High Cohesion",
           "Go": "GRASP_HighCohesion"
         },
         {
-          "Button": "Polymorphism",
+          "Button": "🔸 Polymorphism",
           "Go": "GRASP_Polymorphism"
         },
         {
-          "Button": "Pure Fabrication",
+          "Button": "🔸 Pure Fabrication",
           "Go": "GRASP_PureFabrication"
         },
         {
-          "Button": "Indirection",
+          "Button": "🔸 Indirection",
           "Go": "GRASP_Indirection"
         },
         {
-          "Button": "Protected Variations",
+          "Button": "🔸 Protected Variations",
           "Go": "GRASP_ProtectedVariations"
         },
         {
-          "Button": "..",
+          "Button": "◄",
           "Go": "service"
         }
       ],
