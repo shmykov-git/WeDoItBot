@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Linq;
+using System.Threading.Tasks;
 using Bot.Extensions;
 using Bot.Model;
 using Bot.Model.RoomPlaces;
@@ -45,20 +46,15 @@ namespace TelegramBot.Tools
             }
 
             var room = context.Bot.Map.FindRoom(command);
+            log.Debug($"#Found room: {room.Id} {{{room.GetType().Name}}}");
+
+            CleanRoomState(context.State.CurrentRoom);
 
             context.State.CurrentRoom = room;
-            if (room is MenuRoom menuRoom)
-                context.State.LastMenuRoom = menuRoom;
 
-            context.State.StateType = StateType.None;
+            await room.Visit(context.Visitor);
 
-            await room.Visit(context.Visitor); 
-
-            if (room is ShowRoom showRoom)
-            {
-                if (showRoom.EnterPlace != null)
-                    context.State.StateType = StateType.WaitingForAnswer;
-            }
+            SetRoomState(room);
 
             if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
                 Command(room.AutoGo);
@@ -75,6 +71,7 @@ namespace TelegramBot.Tools
 
             var replyGoCommand = context.State.LastMenuRoom?.FindReplyGo(message) ??
                                  context.Bot.Map.FindReplyGo(message);
+
             if (replyGoCommand.IsNotNullOrEmpty())
             {
                 Command(replyGoCommand);
@@ -82,47 +79,57 @@ namespace TelegramBot.Tools
                 return;
             }
 
-            if (context.State.StateType == StateType.WaitingForAnswer)
-            {
-                var room = (ShowRoom)context.State.CurrentRoom;
-
-                if (room.EnterPlace.Type != EnterType.Text)
-                    return;
-
-                var key = room.EnterPlace.Key;
-
-                context.State.Values.TryAdd(key, message);
-
-                await room.Visit(context.Visitor);
-
-                if (room.EnterPlace == null)
-                    context.State.StateType = StateType.None;
-
-                if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
-                    Command(room.AutoGo);
-            }
+            await CheckRoomAnswer(message, EnterType.Text);
         }
 
         public async void Photo(string fileName)
         {
-            if (context.State.StateType == StateType.WaitingForAnswer)
+            await CheckRoomAnswer(fileName, EnterType.Photo);
+        }
+
+        private async Task CheckRoomAnswer(string value, EnterType type)
+        {
+            if (context.State.StateType != StateType.WaitingForAnswer)
+                return;
+
+            var room = (ShowRoom)context.State.CurrentRoom;
+
+            if (room.EnterPlace.Type != type)
+                return;
+
+            var key = room.EnterPlace.Key;
+
+            context.State.Values.AddOrUpdate(key, k => value, (k, v) => value);
+
+            await room.Visit(context.Visitor);
+
+            if (room.EnterPlace == null)
+                context.State.StateType = StateType.None;
+
+            if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
+                Command(room.AutoGo);
+        }
+
+        private void CleanRoomState(Room room)
+        {
+            if (room == null)
+                return;
+
+            context.State.StateType = StateType.None;
+
+            if (room is ShowRoom showRoom)
+                showRoom.EnterPlace = null;
+        }
+
+        private void SetRoomState(Room room)
+        {
+            if (room is MenuRoom menuRoom)
+                context.State.LastMenuRoom = menuRoom;
+
+            if (room is ShowRoom showRoom)
             {
-                var room = (ShowRoom)context.State.CurrentRoom;
-
-                if (room.EnterPlace.Type != EnterType.Photo)
-                    return;
-
-                var key = room.EnterPlace.Key;
-
-                context.State.Values.AddOrUpdate(key, k => fileName, (k, v) => fileName);
-
-                await room.Visit(context.Visitor);
-
-                if (room.EnterPlace == null)
-                    context.State.StateType = StateType.None;
-
-                if (room.AutoGo.IsNotNullOrEmpty())
-                    Command(room.AutoGo);
+                if (showRoom.EnterPlace != null)
+                    context.State.StateType = StateType.WaitingForAnswer;
             }
         }
     }

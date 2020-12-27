@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Bot.Extensions;
 using Bot.Model;
 using Bot.Model.RoomPlaces;
 using Bot.Model.Rooms;
@@ -14,7 +13,6 @@ using Suit.Logs;
 using Telegram.Bot;
 using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot.Types.ReplyMarkups;
-using TelegramBot.Model;
 
 namespace TelegramBot.Tools
 {
@@ -63,11 +61,13 @@ namespace TelegramBot.Tools
             throw new NotImplementedException(actionRoom.ToJsonStr());
         }
 
+        [LoggingAspect(LoggingRule.Ignore)]
         public Task VisitRoom(Room room)
         {
             return Task.CompletedTask;
         }
 
+        [LoggingAspect(LoggingRule.Ignore)]
         public Task VisitActionRoomPlace(ActionRoomPlace actionRoomPlace)
         {
             return Task.CompletedTask;
@@ -183,7 +183,6 @@ namespace TelegramBot.Tools
             await SendPic(picRoom.Pic);
             await SendText(picRoom.Caption);
         }
-
 
         private async Task SendText(string text)
         {

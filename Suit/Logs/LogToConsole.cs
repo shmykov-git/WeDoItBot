@@ -1,42 +1,46 @@
 ﻿using System;
+using System.Threading;
 
 namespace Suit.Logs
 {
     public class LogToConsole : ILog
     {
+        private void Log(string level, string msg) =>
+            Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff}|{Thread.CurrentThread.ManagedThreadId}|{level}| {msg}");
+
         public void Warn(string msg)
         {
-            Console.WriteLine(msg);
+            Log("WARN ", msg);
         }
 
         public void Exception(Exception exception)
         {
-            Console.WriteLine(exception.ToString());
+            Log("EXCEP", exception.ToString());
         }
 
         public void Info(string msg)
         {
-            Console.WriteLine(msg);
+            Log("INFO ", msg);
         }
 
         public void Trace(string msg)
         {
-            Console.WriteLine(msg);
+            Log("TRACE", msg);
         }
 
         public void Debug(string msg)
         {
-            Console.WriteLine(msg);
+            Log("DEBUG", msg);
         }
 
         public void Error(string msg)
         {
-            Console.WriteLine(msg);
+            Log("ERROR", msg);
         }
 
         public void Fatal(string msg)
         {
-            Console.WriteLine(msg);
+            Log("FATAL", msg);
 		}
     }
 }
