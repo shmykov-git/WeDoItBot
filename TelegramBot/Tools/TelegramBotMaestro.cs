@@ -79,23 +79,25 @@ namespace TelegramBot.Tools
                 return;
             }
 
-            await CheckRoomAnswer(message, EnterType.Text);
+            if (await CheckRoomAnswer(message, EnterType.Text))
+                return;
         }
 
         public async void Photo(string fileName)
         {
-            await CheckRoomAnswer(fileName, EnterType.Photo);
+            if (await CheckRoomAnswer(fileName, EnterType.Photo))
+                return;
         }
 
-        private async Task CheckRoomAnswer(string value, EnterType type)
+        private async Task<bool> CheckRoomAnswer(string value, EnterType type)
         {
             if (context.State.StateType != StateType.WaitingForAnswer)
-                return;
+                return false;
 
             var room = (ShowRoom)context.State.CurrentRoom;
 
             if (room.EnterPlace.Type != type)
-                return;
+                return false;
 
             var key = room.EnterPlace.Key;
 
@@ -107,7 +109,13 @@ namespace TelegramBot.Tools
                 context.State.StateType = StateType.None;
 
             if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
+            {
                 Command(room.AutoGo);
+                
+                return true;
+            }
+
+            return false;
         }
 
         private void CleanRoomState(Room room)
