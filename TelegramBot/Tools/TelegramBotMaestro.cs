@@ -95,7 +95,7 @@ namespace TelegramBot.Tools
 
                 await room.Visit(context.Visitor);
 
-                if ((room as ShowRoom)?.EnterPlace == null)
+                if (room.EnterPlace == null)
                     context.State.StateType = StateType.None;
 
                 if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
@@ -118,10 +118,10 @@ namespace TelegramBot.Tools
 
                 await room.Visit(context.Visitor);
 
-                if ((room as ShowRoom)?.EnterPlace == null)
+                if (room.EnterPlace == null)
                     context.State.StateType = StateType.None;
 
-                if (context.State.StateType != StateType.WaitingForAnswer && room.AutoGo.IsNotNullOrEmpty())
+                if (room.AutoGo.IsNotNullOrEmpty())
                     Command(room.AutoGo);
             }
         }

@@ -6,5 +6,6 @@ namespace Bot.PublicModel.ActionResult
         public byte[] Pic { get; set; }
         public NameGo[] NameGoes { get; set; }
         public int ColumnsCount { get; set; } = 1;
+        public string AutoGo { get; set; }
     }
 }

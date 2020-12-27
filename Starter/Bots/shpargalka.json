@@ -51,7 +51,7 @@
           "Go": "service"
         }
       ],
-      "ColumnsCount": "6"
+      "Col": "6"
     },
     {
       "Id": "solid_s",
@@ -95,7 +95,7 @@
           "Go": "service"
         }
       ],
-      "ColumnsCount": "3" 
+      "Col": "3" 
     },
     {
       "Id": "IoC_table",
@@ -152,7 +152,7 @@
           "Go": "service"
         }
       ],
-      "ColumnsCount": "2"
+      "Col": "2"
     },
     {
       "Id": "GRASP_InformationExpert",

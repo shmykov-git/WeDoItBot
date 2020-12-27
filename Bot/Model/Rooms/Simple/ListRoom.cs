@@ -9,7 +9,8 @@ namespace Bot.Model.Rooms.Simple
     {
         public string List { get; set; }
         public ListItem[] Items { get; set; }
-        public int ColumnsCount { get; set; } = 1;
+        public int? ColumnsCount { get; set; }
+        public int? Col { get; set; }
         protected override void Simplify()
         {
             Places = new RoomPlace[]
@@ -18,7 +19,7 @@ namespace Bot.Model.Rooms.Simple
                 {
                     Caption = List,
                     Buttons = Items.Select(item => new Button() {Name = item.Button, Go = item.Go}).ToArray(),
-                    ColumnsCount = ColumnsCount
+                    ColumnsCount = Col ?? ColumnsCount ?? 1
                 },
             };
         }

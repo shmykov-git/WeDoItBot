@@ -23,7 +23,7 @@ namespace Starter
         public string GetBotFile(string token, string path) =>
             BotFiles.Replace("<token>", token).Replace("<file_path>", path);
 
-        public string PredictionApiUrl => Environment.GetEnvironmentVariable("PREDICTION_APIURL") ?? "http://localhost:5000/predict/<model_name>";
+        public string PredictionApiUrl => Environment.GetEnvironmentVariable("PREDICTION_APIURL") ?? "http://localhost:5050/predict/<model_name>";
 
         public string GetPredictionApiUrl(string modelName) => PredictionApiUrl.Replace("<model_name>", modelName);
 

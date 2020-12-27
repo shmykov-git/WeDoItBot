@@ -163,10 +163,13 @@ namespace TelegramBot.Tools
 
             if (result is PicAndCaptionResult picAndCaptionResult)
             {
-                if (picAndCaptionResult.Pic != null)
-                    await SendPic(picAndCaptionResult.Pic);
-
                 genPicRoom.Generate(picAndCaptionResult);
+
+                if (genPicRoom.Pic != null)
+                    await SendPic(genPicRoom.Pic);
+
+                if (genPicRoom.Caption.IsNotNullOrEmpty() && genPicRoom.Places == null)
+                    await SendText(picAndCaptionResult.Caption);
 
                 return;
             }

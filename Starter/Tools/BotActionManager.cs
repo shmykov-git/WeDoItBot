@@ -103,13 +103,7 @@ namespace Starter.Tools
 
                 return new PicAndCaptionResult()
                 {
-                    Caption = $"Это {prediction}. Попробовать еще раз?",
-                    NameGoes = new NameGo[]
-                    {
-                        ("Да", modelName),
-                        ("Нет", "service")
-                    },
-                    ColumnsCount = 2
+                    Caption = $"🌟🌟🌟 {prediction.ToUpper()} 🌟🌟🌟"
                 };
             }
             catch (Exception e)
