@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramBot", "TelegramBot\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE5287CD-E3D7-46CE-9BC7-A6236921A426}"
 	ProjectSection(SolutionItems) = preProject
+		About.txt = About.txt
 		Deploy.cmd = Deploy.cmd
 		Docker.txt = Docker.txt
 		Dockerfile = Dockerfile
