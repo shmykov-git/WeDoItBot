@@ -35,7 +35,7 @@ namespace Bot.Model.Rooms
                     {
                         Caption = picGen.Caption ?? Caption,
                         Buttons = picGen.NameGoes.Select(ng=>new Button(){Name = ng.Name, Go = ng.Go}).ToArray(),
-                        ColumnsCount = picGen.ColumnsCount
+                        Columns = picGen.Columns
                     },
                 };
             }

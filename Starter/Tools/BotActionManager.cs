@@ -38,7 +38,7 @@ namespace Starter.Tools
                             ("Старт", "start"),
                             ("Хорошо", "service"),
                         },
-                        ColumnsCount = 3
+                        Column = 3
                     };
 
                 case "VasyGenerated":

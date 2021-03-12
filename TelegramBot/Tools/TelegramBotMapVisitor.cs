@@ -90,7 +90,7 @@ namespace TelegramBot.Tools
                 new InlineKeyboardMarkup(
                     buttonDialog.Buttons
                         .ByIndex()
-                        .GroupBy(i => i / buttonDialog.ColumnsCount)
+                        .GroupBy(i => buttonDialog.Columns.ToGroupValue(i))
                         .Select(gi => gi.Select(i => buttonDialog.Buttons[i]).Select(button =>
                             InlineKeyboardButton.WithCallbackData(button.Name, $"{button.Go}")).ToArray())
                         .ToArray()
@@ -119,7 +119,7 @@ namespace TelegramBot.Tools
                 new ReplyKeyboardMarkup(
                     buttonDialog.Buttons
                         .ByIndex()
-                        .GroupBy(i => i / buttonDialog.ColumnsCount)
+                        .GroupBy(i => buttonDialog.Columns.ToGroupValue(i))
                         .Select(gi => gi.Select(i => buttonDialog.Buttons[i]).Select(button =>
                             new KeyboardButton(button.Name)).ToArray())
                         .ToArray()

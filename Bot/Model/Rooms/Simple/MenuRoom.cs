@@ -2,6 +2,7 @@
 using System.Linq;
 using Bot.Model.RoomPlaces;
 using Newtonsoft.Json;
+using Suit.Extensions;
 
 namespace Bot.Model.Rooms.Simple
 {
@@ -9,8 +10,7 @@ namespace Bot.Model.Rooms.Simple
     {
         public string Menu { get; set; }
         public ListItem[] Items { get; set; }
-        public int? ColumnsCount { get; set; }
-        public int? Col { get; set; }
+        public string Col { get; set; }
         protected override void Simplify()
         {
             Places = new RoomPlace[]
@@ -19,7 +19,7 @@ namespace Bot.Model.Rooms.Simple
                 {
                     Caption = Menu,
                     Buttons = Items.Select(item => new ReplyButton() {Name = item.Button, Go = item.Go}).ToArray(),
-                    ColumnsCount = Col ?? ColumnsCount ?? 1
+                    Columns = Col.SplitToInts(',', 1)
                 },
             };
         }

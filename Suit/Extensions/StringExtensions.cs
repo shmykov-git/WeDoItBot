@@ -4,8 +4,24 @@ using System.Linq;
 
 namespace Suit.Extensions
 {
-	public static class StringExtensions
+    public static class StringExtensions
     {
+        public static int[] SplitToInts(this string str, char delimiter = ',', int defaultValue = 1)
+        {
+            var parts = str.Split(delimiter)
+                .Select(v => new
+                {
+                    IsNum = int.TryParse(v.Trim(), out int value),
+                    Value = value
+                })
+                .ToArray();
+
+            var success = parts.All(v => v.IsNum);
+            var values = parts.Select(v => v.Value).ToArray();
+
+            return success ? values : new[] {defaultValue};
+        }
+
         public static string SJoin(this IEnumerable<string> strList, string delimiter = ", ")
         {
 	        return string.Join(delimiter, strList.Where(v => v.IsNotNullOrEmpty()));

@@ -7,7 +7,7 @@ namespace Bot.Model.RoomPlaces
 {
     public class ButtonDialog : RoomPlace
     {
-        public int ColumnsCount { get; set; } = 1;
+        public int[] Columns { get; set; }
         public string Caption { get; set; }
         public Button[] Buttons { get; set; }
 

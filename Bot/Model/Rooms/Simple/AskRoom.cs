@@ -24,7 +24,7 @@ namespace Bot.Model.Rooms.Simple
                         new Button(){Go = YesGo, Name = "Да"},
                         new Button(){Go = NoGo, Name = "Нет"},
                     },
-                    ColumnsCount = 2
+                    Columns = new[] {2}
                 },
             };
         }
