@@ -8,6 +8,9 @@ namespace Suit.Extensions
     {
         public static int[] SplitToInts(this string str, char delimiter = ',', int defaultValue = 1)
         {
+            if (str == null)
+                return new[] { defaultValue };
+
             var parts = str.Split(delimiter)
                 .Select(v => new
                 {
