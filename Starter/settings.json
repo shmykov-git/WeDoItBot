@@ -3,10 +3,10 @@
 
   "Bots": [
     {
-      "Name": "@vasy_do_it_bot",
-      "BotMapFile": "Bots/shpargalka.json",
-      "BotToken": "1245398123:AAEz5SV8Jgt0L8NaEXj-3yWddqOWesNVaIk",
-      "Content": "Bots/shpargalka"
+      "Name": "@forsys777_bot",
+      "BotMapFile": "Bots/forsys.json",
+      "BotToken": "6182239023:AAGYvkldNeKK7nTIvbfWP1S4F_czMRFwfjY",
+      "Content": "Bots/forsys"
     }
   ],
   "BotFiles": "https://api.telegram.org/file/bot<token>/<file_path>",

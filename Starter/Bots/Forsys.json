@@ -1,0 +1,37 @@
+{
+  "Rooms": [
+    {
+      "Id": "start",
+      "AutoGo": "service"
+    },
+    {
+      "Id": "service",
+      "Menu": "Простой бот",
+      "Items": [
+        {
+          "Button": "Деплой",
+          "Go": "deploy"
+        },
+        {
+          "Button": "Посмотреть логи",
+          "Go": "logs"
+        }
+      ],
+      "Col": "2"
+    },
+    {
+      "Id": "botmap",
+      "Do": "SendConfig",
+      "AutoGo": "HelloBot"
+    },
+    {
+      "Id": "Generated",
+      "Gen": "deploy"
+    },
+    {
+      "Id": "logs",
+      "Say": "В разработке",
+      "Go": "service"
+    }
+  ]
+}
